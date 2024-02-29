@@ -1,132 +1,79 @@
-import { TableHead, TableRow, TableHeader, TableCell, TableBody, Table } from "@/components/ui/table"
-import Link from "next/link"
-import { FaLink } from "react-icons/fa6"
+import Link from "next/link";
+import { FaArrowRight, FaBook, FaBookOpen, FaChalkboardUser, FaGraduationCap, FaHandshake, FaMoneyBill, FaMoneyBillTrendUp } from "react-icons/fa6";
 
-type Course = {
-    courseName: string;
-    courseProvider: string;
-    dateOfCompletion: string;
-    facultyId: string;
-    certificateLink: string;
+type ViewLink = {
+    title: string;
+    description: string;
+    icon: JSX.Element;
+    link: string;
 }
 
-const courses: Course[] = [
+const viewLinks: ViewLink[] = [
     {
-        courseName: "Introduction to Data Science",
-        courseProvider: "DataCamp",
-        dateOfCompletion: "2023-06-15",
-        facultyId: "FC101",
-        certificateLink: "#",
+        title: "Faculty",
+        description: "List of Faculty",
+        link: "/view/faculty",
+        icon: <FaChalkboardUser />,
     },
     {
-        courseName: "JavaScript for Beginners",
-        courseProvider: "Udemy",
-        dateOfCompletion: "2023-03-19",
-        facultyId: "FC102",
-        certificateLink: "#",
+        title: "Courses",
+        description: "List of course completed by Faculty.",
+        link: "/view/courses",
+        icon: <FaGraduationCap />,
     },
     {
-        courseName: "Python Fundamentals",
-        courseProvider: "Coursera",
-        dateOfCompletion: "2023-09-22",
-        facultyId: "FC103",
-        certificateLink: "#",
+        title: "Journals",
+        description: "List of Faculty contributions to journals.",
+        link: "/view/journals",
+        icon: <FaBook />,
     },
     {
-        courseName: "Web Development Masterclass",
-        courseProvider: "edX",
-        dateOfCompletion: "2023-11-30",
-        facultyId: "FC104",
-        certificateLink: "#",
+        title: "Conferences",
+        description: "List of conferences attended by Faculty.",
+        link: "/view/conferences",
+        icon: <FaHandshake />
     },
     {
-        courseName: "Machine Learning Techniques",
-        courseProvider: "Udacity",
-        dateOfCompletion: "2023-07-10",
-        facultyId: "FC105",
-        certificateLink: "#",
+        title: "Patents",
+        description: "List of Patents filed by Faculty.",
+        link: "/view/patents",
+        icon: <FaBookOpen />,
     },
     {
-        courseName: "Introduction to Data Science",
-        courseProvider: "DataCamp",
-        dateOfCompletion: "2023-06-15",
-        facultyId: "FC101",
-        certificateLink: "#",
-    },
-    {
-        courseName: "JavaScript for Beginners",
-        courseProvider: "Udemy",
-        dateOfCompletion: "2023-03-19",
-        facultyId: "FC102",
-        certificateLink: "#",
-    },
-    {
-        courseName: "Python Fundamentals",
-        courseProvider: "Coursera",
-        dateOfCompletion: "2023-09-22",
-        facultyId: "FC103",
-        certificateLink: "#",
-    },
-    {
-        courseName: "Web Development Masterclass",
-        courseProvider: "edX",
-        dateOfCompletion: "2023-11-30",
-        facultyId: "FC104",
-        certificateLink: "#",
-    },
-    {
-        courseName: "Machine Learning Techniques",
-        courseProvider: "Udacity",
-        dateOfCompletion: "2023-07-10",
-        facultyId: "FC105",
-        certificateLink: "#",
+        title: "Grants",
+        description: "List of grants proposed by the Faculty.",
+        link: "/view/grants",
+        icon: <FaMoneyBillTrendUp />,
     },
 ]
 
-export default function Page() {
+export default function ViewPage() {
     return (
-        <main className="w-screen px-3 py-6">
+        <main className="w-full px-3 py-6">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
-                View Courses
+                View Records
             </h1>
-            <div className="container mx-auto py-10">
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="text-left font-medium">S.No.</TableHead>
-                            <TableHead className="font-medium">Course Name</TableHead>
-                            <TableHead className="font-medium">Course Provider</TableHead>
-                            <TableHead className="text-center font-medium">Date of Completion</TableHead>
-                            <TableHead className="text-center font-medium">Faculty ID</TableHead>
-                            <TableHead className="text-center font-medium w-12">Link</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {
-                            courses.map((course: Course, index: number) => {
-                                return (
-                                    <TableRow key={index + 1}>
-                                        <TableCell className="text-left font-medium">{index + 1}</TableCell>
-                                        <TableCell className="text-left font-medium">{course.courseName}</TableCell>
-                                        <TableCell className="text-left font-medium">{course.courseProvider}</TableCell>
-                                        <TableCell className="text-center font-medium">{course.dateOfCompletion}</TableCell>
-                                        <TableCell className="text-center font-medium">{course.facultyId}</TableCell>
-                                        <TableCell className="text-center font-medium">
-                                            <Link
-                                                className="inline-flex hover:underline"
-                                                href={course.certificateLink}
-                                            >
-                                                View
-                                                <FaLink className="ml-1" />
-                                            </Link>
-                                        </TableCell>
-                                    </TableRow>
-                                )
-                            })
-                        }
-                    </TableBody>
-                </Table>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-6 mt-8">
+                {
+                    viewLinks.map((viewLink: ViewLink, index: number) => {
+                        return (
+                            <Link href={viewLink.link} key={index} className="w-full">
+                                <div className="border border-gray-200 p-6 rounded-lg bg-gray-100 hover:bg-blue-200 dark:bg-gray-900 dark:hover:bg-gray-800">
+                                    <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4">
+                                        {viewLink.icon}
+                                    </div>
+                                    <h2 className="text-xl text-gray-900 dark:text-gray-100 font-semibold title-font mb-2">
+                                        {viewLink.title}
+                                    </h2>
+                                    <p className="leading-relaxed text-base">
+                                        {viewLink.description}
+                                    </p>
+                                </div>
+                            </Link>
+                        )
+                    })
+                }
             </div>
-        </main>
+        </main >
     )
 }
