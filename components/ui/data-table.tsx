@@ -82,7 +82,7 @@ export function DataTable<TData, TValue>({
                             ))
                         ) : (
                             <TableRow>
-                                <TableCell colSpan={columns.length} className="h-24 text-center">
+                                <TableCell colSpan={columns.length} className="h-24 text-center font-semibold text-xl">
                                     No results.
                                 </TableCell>
                             </TableRow>

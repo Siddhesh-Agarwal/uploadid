@@ -1,21 +1,7 @@
-import {
-    TableHead,
-    TableRow,
-    TableHeader,
-    TableCell,
-    TableBody,
-    Table
-} from "@/components/ui/table"
-import Link from "next/link"
-import { FaLink } from "react-icons/fa6"
+"use client";
 
-type Patent = {
-    publisher: string;
-    title: string;
-    dateOfPublication: string;
-    facultyIds: string;
-    journalLink: string;
-}
+import { Patent, columns } from "./columns"
+import { DataTable } from "@/components/ui/data-table"
 
 const patents: Patent[] = [
     { "publisher": "Brainverse", "title": "Attention is all you need", "dateOfPublication": "9/1/2006", "facultyIds": "1", "journalLink": "https://goo.ne.jp/sed.aspx?parturient=sapien&montes=in&nascetur=sapien&ridiculus=iaculis&mus=congue&etiam=vivamus&vel=metus&augue=arcu&vestibulum=adipiscing&rutrum=molestie&rutrum=hendrerit&neque=at&aenean=vulputate&auctor=vitae&gravida=nisl&sem=aenean&praesent=lectus&id=pellentesque&massa=eget&id=nunc&nisl=donec&venenatis=quis&lacinia=orci&aenean=eget&sit=orci&amet=vehicula&justo=condimentum&morbi=curabitur&ut=in&odio=libero&cras=ut&mi=massa&pede=volutpat&malesuada=convallis&in=morbi&imperdiet=odio&et=odio&commodo=elementum&vulputate=eu&justo=interdum&in=eu&blandit=tincidunt&ultrices=in&enim=leo&lorem=maecenas&ipsum=pulvinar&dolor=lobortis&sit=est&amet=phasellus&consectetuer=sit&adipiscing=amet&elit=erat&proin=nulla&interdum=tempus&mauris=vivamus&non=in&ligula=felis&pellentesque=eu&ultrices=sapien&phasellus=cursus&id=vestibulum&sapien=proin&in=eu&sapien=mi&iaculis=nulla&congue=ac&vivamus=enim&metus=in&arcu=tempor&adipiscing=turpis&molestie=nec&hendrerit=euismod&at=scelerisque&vulputate=quam&vitae=turpis&nisl=adipiscing&aenean=lorem&lectus=vitae&pellentesque=mattis&eget=nibh&nunc=ligula&donec=nec&quis=sem&orci=duis&eget=aliquam&orci=convallis&vehicula=nunc" },
@@ -38,42 +24,7 @@ export default function PatentsPage() {
                 Patents
             </h1>
             <div className="container mx-auto py-10">
-                <Table>
-                    <TableHeader>
-                        <TableRow>
-                            <TableHead className="text-left font-medium">S.No.</TableHead>
-                            <TableHead className="font-medium">Publisher</TableHead>
-                            <TableHead className="font-medium">Title</TableHead>
-                            <TableHead className="text-center font-medium w-40">Date of Publication</TableHead>
-                            <TableHead className="text-center font-medium w-28">Faculty IDs</TableHead>
-                            <TableHead className="text-center font-medium w-12">Link</TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                        {
-                            patents.map((patent: Patent, index: number) => {
-                                return (
-                                    <TableRow key={index + 1}>
-                                        <TableCell className="text-left font-medium">{index + 1}</TableCell>
-                                        <TableCell className="text-left font-medium">{patent.title}</TableCell>
-                                        <TableCell className="text-left font-medium">{patent.publisher}</TableCell>
-                                        <TableCell className="text-center font-medium">{patent.dateOfPublication}</TableCell>
-                                        <TableCell className="text-center font-medium">{patent.facultyIds}</TableCell>
-                                        <TableCell className="text-center font-medium">
-                                            <Link
-                                                className="inline-flex hover:underline"
-                                                href={patent.journalLink}
-                                            >
-                                                View
-                                                <FaLink className="ml-1" />
-                                            </Link>
-                                        </TableCell>
-                                    </TableRow>
-                                )
-                            })
-                        }
-                    </TableBody>
-                </Table>
+                <DataTable columns={columns} data={patents} />
             </div>
         </main>
     )

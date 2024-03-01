@@ -5,7 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Button } from "./ui/button"
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./ui/navigation-menu"
 import Link from "next/link"
-import { FaEye, FaMoon, FaSun, FaUpload } from "react-icons/fa6";
+import { FaEye, FaMoon, FaPlus, FaSun } from "react-icons/fa6";
 
 function ModeToggle() {
     const { setTheme } = useTheme()
@@ -46,10 +46,10 @@ export default function Navbar() {
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/upload" legacyBehavior passHref>
+                    <Link href="/add" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <FaUpload className="mr-1 font-bold" />
-                            Upload
+                            <FaPlus className="mr-1 font-bold" />
+                            Add
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>

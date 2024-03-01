@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import "./globals.css";
 import Navbar from "@/components/Navbar";
+import "./globals.css";
 
 
 const inter = Noto_Sans({ subsets: ["cyrillic"] });
