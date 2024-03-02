@@ -1,28 +1,17 @@
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Faculty, FacultySchema, departments, designations } from "@/types/Faculty";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
-import { z } from "zod"
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-
-
-const departments: unknown = ["CSE", "IT", "AIDS", "CSBS", "MTech. CSE", "CSE CS", "CSD", "ECE", "EEE", "MECH", "MCT", "CIVIL"]
-const designations: unknown = ["Assistant Professor", "Assosiate Professor", "Professor"]
-const formSchema = z.object({
-    facultyName: z.string(),
-    department: z.enum(departments as const),
-    designation: z.enum(designations as const),
-    email: z.coerce.string().toLowerCase().email({ message: "Invalid Email" }).endsWith("@skcet.ac.in", {message: "Use @skcet.ac.in mail"}),
-    facultyID: z.string().toUpperCase(),
-})
 
 export default function FacultyForm() {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<Faculty>({
+        resolver: zodResolver(FacultySchema),
     })
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    function onSubmit(values: Faculty) {
         // TODO: add to supabase
         console.log(values);
     }
@@ -132,7 +121,9 @@ export default function FacultyForm() {
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
+                <Button type="submit" variant={"outline"} className="bg-green-400 hover:bg-green-500 w-full">
+                    Submit
+                </Button>
             </form>
 
         </Form>

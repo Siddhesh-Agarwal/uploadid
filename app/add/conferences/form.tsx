@@ -1,40 +1,39 @@
-import { Course, CourseSchema } from "@/types/Course";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { Conference, ConferenceSchema } from "@/types/Conference";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
+import { useForm } from "react-hook-form";
 import { FaCalendar } from "react-icons/fa6";
-import { Calendar } from "@/components/ui/calendar";
 
-export default function CourseForm() {
-    const form = useForm<Course>({
-        resolver: zodResolver(CourseSchema)
-    })
-    function onSubmit(values: Course) {
+export default function ConferenceForm() {
+    const form = useForm<Conference>({
+        resolver: zodResolver(ConferenceSchema)
+    });
+    function onSubmit(values: Conference) {
         // TODO: add to supabase
         console.log(values);
     }
-
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <h1 className="scroll-m-20 text-4xl text-center mb-4 font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
-                    Courses
+                    Conferences
                 </h1>
                 <FormField
                     control={form.control}
-                    name="courseName"
+                    name="facultyName"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>
-                                Course Name
+                                Faculty Name
                             </FormLabel>
                             <FormControl>
-                                <Input placeholder="Engineering Ethics" {...field} />
+                                <Input placeholder="Jane Doe" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -42,25 +41,40 @@ export default function CourseForm() {
                 />
                 <FormField
                     control={form.control}
-                    name="courseProvider"
+                    name="eventName"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>
-                                Course Provider
+                                Event Name
                             </FormLabel>
                             <FormControl>
-                                <Input placeholder="Coursera" {...field} />
+                                <Input placeholder="Jane Doe" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <div className="flex flex-row">
+                <div className="flex flex-row w-full">
                     <FormField
                         control={form.control}
-                        name="dateOfCompletion"
+                        name="eventVenue"
                         render={({ field }) => (
-                            <FormItem className="w-1/2">
+                            <FormItem className="w-1/2 mr-1">
+                                <FormLabel>
+                                    Event Venue
+                                </FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Jane Doe" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="dateOfEvent"
+                        render={({ field }) => (
+                            <FormItem className="w-1/2 ml-1">
                                 <FormLabel>Date of Completion</FormLabel>
                                 <Popover>
                                     <PopoverTrigger asChild>
@@ -68,7 +82,7 @@ export default function CourseForm() {
                                             <Button
                                                 variant={"outline"}
                                                 className={cn(
-                                                    "w-[240px] pl-3 text-left font-normal",
+                                                    "w-full pl-3 text-left font-normal",
                                                     !field.value && "text-muted-foreground"
                                                 )}
                                             >
@@ -97,29 +111,14 @@ export default function CourseForm() {
                             </FormItem>
                         )}
                     />
-                    <FormField
-                        control={form.control}
-                        name="facultyId"
-                        render={({ field }) => (
-                            <FormItem className="w-1/2">
-                                <FormLabel>
-                                    Faculty ID
-                                </FormLabel>
-                                <FormControl>
-                                    <Input placeholder="CSE001" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
                 </div>
                 <FormField
                     control={form.control}
-                    name="certificateLink"
+                    name="link"
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="">
                             <FormLabel>
-                                Link
+                                Certificate Link
                             </FormLabel>
                             <FormControl>
                                 <Input placeholder="https://drive.google.com/" {...field} type="url" />

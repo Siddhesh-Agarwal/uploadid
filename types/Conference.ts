@@ -1,7 +1,11 @@
-export type Conference = {
-    facultyName: string;
-    eventName: string;
-    eventVenue: string;
-    dateOfEvent: string;
-    link: string;
-}
+import { z } from "zod";
+
+export const ConferenceSchema = z.object({
+    facultyName: z.coerce.string(),
+    eventName: z.coerce.string(),
+    eventVenue: z.coerce.string(),
+    dateOfEvent: z.coerce.date(),
+    link: z.coerce.string().url({ message: "Invalid URL" }).startsWith("https://", { message: "Secure URL required." }),
+})
+
+export type Conference = z.infer<typeof ConferenceSchema>
