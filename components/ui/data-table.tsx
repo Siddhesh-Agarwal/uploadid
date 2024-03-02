@@ -2,9 +2,11 @@
 
 import {
     ColumnDef,
+    ColumnFiltersState,
     SortingState,
     flexRender,
     getCoreRowModel,
+    getFilteredRowModel,
     getPaginationRowModel,
     getSortedRowModel,
     useReactTable,
@@ -19,11 +21,43 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Button } from "./button"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { Input } from "./input"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[]
+}
+
+// A debounced input react component
+function DebouncedInput({
+    value: initialValue,
+    onChange,
+    debounce = 500,
+    ...props
+}: {
+    value: string | number
+    onChange: (value: string | number) => void
+    debounce?: number
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'>) {
+    const [value, setValue] = useState(initialValue)
+
+    useEffect(() => {
+        setValue(initialValue)
+    }, [initialValue])
+
+    useEffect(() => {
+        const timeout = setTimeout(() => {
+            onChange(value)
+        }, debounce)
+
+        return () => clearTimeout(timeout)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [value])
+
+    return (
+        <Input {...props} value={value} onChange={e => setValue(e.target.value)} />
+    )
 }
 
 export function DataTable<TData, TValue>({
@@ -31,21 +65,33 @@ export function DataTable<TData, TValue>({
     data,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])
+    const [globalFilter, setGlobalFilter] = useState<string>("")
 
     const table = useReactTable({
         data,
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        getFilteredRowModel: getFilteredRowModel(),
         onSortingChange: setSorting,
+        onGlobalFilterChange: setGlobalFilter,
         getSortedRowModel: getSortedRowModel(),
         state: {
             sorting,
+            globalFilter,
         },
     })
 
     return (
         <div>
+            <div>
+                <DebouncedInput
+                    value={globalFilter ?? ''}
+                    onChange={value => setGlobalFilter(String(value))}
+                    className="p-2 font-lg shadow border border-block mb-4"
+                    placeholder="Search all columns..."
+                />
+            </div>
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>
