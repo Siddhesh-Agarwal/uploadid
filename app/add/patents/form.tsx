@@ -96,7 +96,7 @@ export default function PatentForm() {
                         control={form.control}
                         name="dateOfPublication"
                         render={({ field }) => (
-                            <FormItem className="w-1/2 mr-1">
+                            <FormItem className="w-full mr-1">
                                 <FormLabel>Date of Publication</FormLabel>
                                 <Popover>
                                     <PopoverTrigger asChild>
