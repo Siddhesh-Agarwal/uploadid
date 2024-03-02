@@ -34,13 +34,20 @@ export const JournalNames: unknown = [
     "ACM Transactions on Sensor Networks",
     "IEEE/ACM Transactions on Computational Biology and Bioinformatic",
 ]
+export const JournalTypes: unknown = [
+    "Wos",
+    "Scopus",
+    "UGC care",
+]
+
 
 export const JournalSchema = z.object({
+    facultyID: z.coerce.string(),
     publisher: z.enum(JournalPublishers as const),
     nameOfJournal: z.enum(JournalNames as const),
+    journalType: z.array(z.enum(JournalTypes as const)),
     dateOfPublication: z.coerce.date(),
     DOI: z.coerce.string(),
-    facultyID: z.coerce.string(),
     issueNumber: z.coerce.number(),
     volumeNumber: z.coerce.number(),
     paperLink: z.coerce.string().url({ message: "Invalid URL" }).startsWith("https://", { message: "Secure URL required." }),
