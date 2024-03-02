@@ -17,7 +17,7 @@ const patents: Patent[] = [
     { "publisher": "Thoughtworks", "title": "Convex Optimizations", "dateOfPublication": "6/27/2007", "facultyIds": "11", "journalLink": "https://list-manage.com/posuere.json?consequat=enim&morbi=blandit&a=mi&ipsum=in&integer=porttitor&a=pede&nibh=justo&in=eu&quis=massa&justo=donec&maecenas=dapibus&rhoncus=duis&aliquam=at&lacus=velit&morbi=eu&quis=est&tortor=congue&id=elementum&nulla=in&ultrices=hac&aliquet=habitasse&maecenas=platea&leo=dictumst&odio=morbi&condimentum=vestibulum&id=velit&luctus=id&nec=pretium&molestie=iaculis&sed=diam&justo=erat&pellentesque=fermentum&viverra=justo&pede=nec&ac=condimentum&diam=neque&cras=sapien&pellentesque=placerat&volutpat=ante&dui=nulla&maecenas=justo&tristique=aliquam&est=quis&et=turpis&tempus=eget&semper=elit&est=sodales&quam=scelerisque&pharetra=mauris&magna=sit&ac=amet&consequat=eros&metus=suspendisse&sapien=accumsan&ut=tortor&nunc=quis&vestibulum=turpis&ante=sed&ipsum=ante&primis=vivamus" },
 ]
 
-export default function PatentsPage() {
+export default function ViewPatentsPage() {
     return (
         <main className="w-full px-3 py-6">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">

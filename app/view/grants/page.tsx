@@ -24,7 +24,7 @@ const grants: Grant[] = [
     { "proposedBy": "Sileas Slater", "title": "Konklux", "appliedOn": "2021-12-30", "grantAmount": 250063, "status": false }
 ]
 
-export default function GrantsPage() {
+export default function ViewGrantsPage() {
     return (
         <main className="w-full px-3 py-6">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
