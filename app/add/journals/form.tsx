@@ -62,7 +62,7 @@ export default function JournalForm() {
                                     </FormControl>
                                     <SelectContent>
                                         {
-                                            (JournalPublishers as string[]).map((publisher: string, index: number) => {
+                                            JournalPublishers.map((publisher: string, index: number) => {
                                                 return (
                                                     <SelectItem value={publisher} key={index}>{publisher}</SelectItem>
                                                 )
@@ -89,7 +89,7 @@ export default function JournalForm() {
                                     </FormControl>
                                     <SelectContent>
                                         {
-                                            (JournalNames as string[]).map((names: string, index: number) => {
+                                            JournalNames.map((names: string, index: number) => {
                                                 return (
                                                     <SelectItem value={names} key={index}>{names}</SelectItem>
                                                 )
@@ -112,7 +112,7 @@ export default function JournalForm() {
                                 <FormLabel className="text-base">Journal Type</FormLabel>
                             </div>
                             {
-                                (JournalTypes as string[]).map((item) => (
+                                JournalTypes.map((item) => (
                                     <FormField
                                         key={item}
                                         control={form.control}

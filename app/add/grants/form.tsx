@@ -133,7 +133,7 @@ export default function GrantForm() {
                                 </FormControl>
                                 <SelectContent>
                                     {
-                                        (GrantStatus as string[]).map((staus: string, index: number) => {
+                                        GrantStatus.map((staus: string, index: number) => {
                                             return (
                                                 <SelectItem value={staus} key={index}>{staus}</SelectItem>
                                             )

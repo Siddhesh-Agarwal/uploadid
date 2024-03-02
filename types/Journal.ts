@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const JournalPublishers: unknown = [
+export const JournalPublishers: string[] = [
     "ACS Publications",
     "Allen Press",
     "Anvil publishing",
@@ -19,7 +19,7 @@ export const JournalPublishers: unknown = [
     "Taylor and Francis",
     "Wiley",
 ]
-export const JournalNames: unknown = [
+export const JournalNames: string[] = [
     "AI Open",
     "ACM Computing Surveys",
     "ACM Transactions on Computational Logic",
@@ -34,18 +34,17 @@ export const JournalNames: unknown = [
     "ACM Transactions on Sensor Networks",
     "IEEE/ACM Transactions on Computational Biology and Bioinformatic",
 ]
-export const JournalTypes: unknown = [
+export const JournalTypes: string[] = [
     "Wos",
     "Scopus",
     "UGC care",
 ]
 
-
 export const JournalSchema = z.object({
     facultyID: z.coerce.string(),
-    publisher: z.enum(JournalPublishers as const),
-    nameOfJournal: z.enum(JournalNames as const),
-    journalType: z.array(z.enum(JournalTypes as const)).refine((value) => value.some((item) => item), { message: "Select at least one type" }),
+    publisher: z.coerce.string(),
+    nameOfJournal: z.coerce.string(),
+    journalType: z.array(z.enum(["Wos", "Scopus", "UGC care"])).refine((value) => value.some((item) => item), { message: "Select at least one type" }),
     dateOfPublication: z.coerce.date(),
     DOI: z.coerce.string(),
     issueNumber: z.coerce.number(),

@@ -53,7 +53,7 @@ export default function FacultyForm() {
                                     </FormControl>
                                     <SelectContent>
                                         {
-                                            (departments as string[]).map((department: string, index: number) => {
+                                            departments.map((department: string, index: number) => {
                                                 return (
                                                     <SelectItem value={department} key={index}>{department}</SelectItem>
                                                 )
@@ -80,7 +80,7 @@ export default function FacultyForm() {
                                     </FormControl>
                                     <SelectContent>
                                         {
-                                            (designations as string[]).map((designations: string, index: number) => {
+                                            designations.map((designations: string, index: number) => {
                                                 return (
                                                     <SelectItem value={designations} key={index}>{designations}</SelectItem>
                                                 )
