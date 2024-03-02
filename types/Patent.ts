@@ -5,7 +5,7 @@ export const PatentSchema = z.object({
     title: z.coerce.string(),
     dateOfPublication: z.coerce.date(),
     facultyID: z.coerce.string(),
-    journalLink: z.coerce.string().url({message: "Invalid URL"}).startsWith("https://", {message: "Insecure URL"}),
+    journalLink: z.coerce.string().url({ message: "Invalid URL" }).startsWith("https://", { message: "Secure URL required." })
 })
 
 export type Patent = z.infer<typeof PatentSchema>

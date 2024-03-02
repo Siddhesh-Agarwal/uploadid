@@ -45,7 +45,7 @@ export const JournalSchema = z.object({
     facultyID: z.coerce.string(),
     publisher: z.enum(JournalPublishers as const),
     nameOfJournal: z.enum(JournalNames as const),
-    journalType: z.array(z.enum(JournalTypes as const)),
+    journalType: z.array(z.enum(JournalTypes as const)).refine((value) => value.some((item) => item), { message: "Select at least one type" }),
     dateOfPublication: z.coerce.date(),
     DOI: z.coerce.string(),
     issueNumber: z.coerce.number(),

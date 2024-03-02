@@ -21,6 +21,7 @@ export default function FacultyForm() {
                 <h1 className="scroll-m-20 text-4xl text-center mb-4 font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
                     Add Faculty
                 </h1>
+
                 <FormField
                     control={form.control}
                     name="facultyName"
@@ -36,6 +37,7 @@ export default function FacultyForm() {
                         </FormItem>
                     )}
                 />
+
                 <div className="flex flex-row w-full">
                     <FormField
                         control={form.control}
@@ -63,6 +65,7 @@ export default function FacultyForm() {
                             </FormItem>
                         )}
                     />
+
                     <FormField
                         control={form.control}
                         name="designation"
@@ -106,6 +109,7 @@ export default function FacultyForm() {
                         </FormItem>
                     )}
                 />
+
                 <FormField
                     control={form.control}
                     name="facultyID"
@@ -121,6 +125,7 @@ export default function FacultyForm() {
                         </FormItem>
                     )}
                 />
+
                 <Button type="submit" variant={"outline"} className="bg-green-400 hover:bg-green-500 w-full">
                     Submit
                 </Button>

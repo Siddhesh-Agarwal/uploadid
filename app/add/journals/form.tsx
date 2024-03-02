@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Journal, JournalNames, JournalPublishers, JournalSchema } from "@/types/Journal"
+import { Journal, JournalNames, JournalPublishers, JournalSchema, JournalTypes } from "@/types/Journal"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns";
 import { useForm } from "react-hook-form"
@@ -13,7 +14,10 @@ import { FaCalendar } from "react-icons/fa6";
 
 export default function JournalForm() {
     const form = useForm<Journal>({
-        resolver: zodResolver(JournalSchema)
+        resolver: zodResolver(JournalSchema),
+        defaultValues: {
+            journalType: ["Wos", "Scopus", "UGC care"],
+        },
     })
     function onSubmit(values: Journal) {
         // TODO: add to supabase
@@ -26,6 +30,7 @@ export default function JournalForm() {
                 <h1 className="scroll-m-20 text-4xl text-center mb-4 font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
                     Journal
                 </h1>
+
                 <FormField
                     control={form.control}
                     name="facultyID"
@@ -41,6 +46,7 @@ export default function JournalForm() {
                         </FormItem>
                     )}
                 />
+
                 <div className="flex flex-row">
                     <FormField
                         control={form.control}
@@ -68,6 +74,7 @@ export default function JournalForm() {
                             </FormItem>
                         )}
                     />
+
                     <FormField
                         control={form.control}
                         name="nameOfJournal"
@@ -95,6 +102,55 @@ export default function JournalForm() {
                         )}
                     />
                 </div>
+
+                <FormField
+                    control={form.control}
+                    name="journalType"
+                    render={() => (
+                        <FormItem>
+                            <div className="mb-4">
+                                <FormLabel className="text-base">Journal Type</FormLabel>
+                            </div>
+                            {
+                                (JournalTypes as string[]).map((item) => (
+                                    <FormField
+                                        key={item}
+                                        control={form.control}
+                                        name="journalType"
+                                        render={({ field }) => {
+                                            return (
+                                                <FormItem
+                                                    key={item}
+                                                    className="flex flex-row items-start space-x-3 space-y-0"
+                                                >
+                                                    <FormControl>
+                                                        <Checkbox
+                                                            checked={field.value?.includes(item)}
+                                                            onCheckedChange={(checked) => {
+                                                                return checked
+                                                                    ? field.onChange([...field.value, item])
+                                                                    : field.onChange(
+                                                                        field.value?.filter(
+                                                                            (value) => value !== item
+                                                                        )
+                                                                    )
+                                                            }}
+                                                        />
+                                                    </FormControl>
+                                                    <FormLabel className="font-normal">
+                                                        {item}
+                                                    </FormLabel>
+                                                </FormItem>
+                                            )
+                                        }}
+                                    />
+                                ))
+                            }
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
                 <div className="flex flex-row">
                     <FormField
                         control={form.control}
@@ -137,6 +193,7 @@ export default function JournalForm() {
                             </FormItem>
                         )}
                     />
+
                     <FormField
                         control={form.control}
                         name="DOI"
@@ -153,6 +210,7 @@ export default function JournalForm() {
                         )}
                     />
                 </div>
+
                 <div className="flex flex-row">
                     <FormField
                         control={form.control}
@@ -169,6 +227,7 @@ export default function JournalForm() {
                             </FormItem>
                         )}
                     />
+
                     <FormField
                         control={form.control}
                         name="volumeNumber"
@@ -185,6 +244,7 @@ export default function JournalForm() {
                         )}
                     />
                 </div>
+
                 <div className="flex flex-row">
                     <FormField
                         control={form.control}
@@ -201,6 +261,7 @@ export default function JournalForm() {
                             </FormItem>
                         )}
                     />
+
                     <FormField
                         control={form.control}
                         name="journalLink"
@@ -217,6 +278,7 @@ export default function JournalForm() {
                         )}
                     />
                 </div>
+
                 <Button type="submit" variant={"outline"} className="bg-green-400 hover:bg-green-500 w-full">
                     Submit
                 </Button>

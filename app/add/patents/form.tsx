@@ -3,19 +3,18 @@ import { Calendar } from "@/components/ui/calendar";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Grant, GrantSchema, GrantStatus } from "@/types/Grant";
+import { Patent, PatentSchema } from "@/types/Patent";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { FaCalendar } from "react-icons/fa6";
 
-export default function GrantForm() {
-    const form = useForm<Grant>({
-        resolver: zodResolver(GrantSchema)
+export default function PatentForm() {
+    const form = useForm<Patent>({
+        resolver: zodResolver(PatentSchema)
     })
-    function onSubmit(values: Grant) {
+    function onSubmit(values: Patent) {
         // TODO: add to supabase
         console.log(values);
     }
@@ -24,19 +23,19 @@ export default function GrantForm() {
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                 <h1 className="scroll-m-20 text-4xl text-center mb-4 font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
-                    Grant
+                    Patent
                 </h1>
 
                 <FormField
                     control={form.control}
-                    name="proposedBy"
+                    name="publisher"
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="ml-1">
                             <FormLabel>
-                                Proposed by
+                                Publisher
                             </FormLabel>
                             <FormControl>
-                                <Input placeholder="Jane Doe" {...field} />
+                                <Input placeholder="1234567da890" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -47,12 +46,12 @@ export default function GrantForm() {
                     control={form.control}
                     name="title"
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="ml-1">
                             <FormLabel>
                                 Title
                             </FormLabel>
                             <FormControl>
-                                <Input placeholder="Jane Doe" {...field} />
+                                <Input placeholder="1234567da890" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -62,10 +61,43 @@ export default function GrantForm() {
                 <div className="flex flex-row">
                     <FormField
                         control={form.control}
-                        name="appliedOn"
+                        name="facultyID"
+                        render={({ field }) => (
+                            <FormItem className="w-1/2 ml-1">
+                                <FormLabel>
+                                    Faculty ID
+                                </FormLabel>
+                                <FormControl>
+                                    <Input placeholder="CSE001" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="journalLink"
+                        render={({ field }) => (
+                            <FormItem className="w-1/2 ml-1">
+                                <FormLabel>
+                                    Link
+                                </FormLabel>
+                                <FormControl>
+                                    <Input placeholder="https://drive.google.com/" {...field} type="url" />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+
+                <FormField
+                        control={form.control}
+                        name="dateOfPublication"
                         render={({ field }) => (
                             <FormItem className="w-1/2 mr-1">
-                                <FormLabel>Date of Application</FormLabel>
+                                <FormLabel>Date of Publication</FormLabel>
                                 <Popover>
                                     <PopoverTrigger asChild>
                                         <FormControl>
@@ -101,50 +133,6 @@ export default function GrantForm() {
                             </FormItem>
                         )}
                     />
-
-                    <FormField
-                        control={form.control}
-                        name="grantAmount"
-                        render={({ field }) => (
-                            <FormItem className="w-1/2 ml-1">
-                                <FormLabel>
-                                    Grant Amount (in Rs.)
-                                </FormLabel>
-                                <FormControl>
-                                    <Input placeholder="100000" {...field} type="number" />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                </div>
-
-                <FormField
-                    control={form.control}
-                    name="status"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Status</FormLabel>
-                            <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                <FormControl>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select the Status" />
-                                    </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                    {
-                                        (GrantStatus as string[]).map((staus: string, index: number) => {
-                                            return (
-                                                <SelectItem value={staus} key={index}>{staus}</SelectItem>
-                                            )
-                                        })
-                                    }
-                                </SelectContent>
-                            </Select>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
 
                 <Button type="submit" variant={"outline"} className="bg-green-400 hover:bg-green-500 w-full">
                     Submit
