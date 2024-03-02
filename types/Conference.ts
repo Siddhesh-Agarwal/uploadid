@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const ConferenceSchema = z.object({
-    facultyName: z.coerce.string(),
+    facultyID: z.coerce.string(),
     eventName: z.coerce.string(),
     eventVenue: z.coerce.string(),
     dateOfEvent: z.coerce.date(),

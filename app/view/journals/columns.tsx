@@ -9,6 +9,20 @@ import { FaLink } from "react-icons/fa6";
 
 export const columns: ColumnDef<Journal>[] = [
     {
+        accessorKey: "facultyID",
+        header: ({ column }) => {
+            return (
+                <Button
+                    variant="ghost"
+                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+                >
+                    Faculty ID
+                    <ArrowUpDown className="ml-2 h-4 w-4" />
+                </Button>
+            )
+        }
+    },
+    {
         accessorKey: "publisher",
         header: ({ column }) => {
             return (
@@ -51,18 +65,8 @@ export const columns: ColumnDef<Journal>[] = [
         }
     },
     {
-        accessorKey: "facultyIds",
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant="ghost"
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Faculty ID
-                    <ArrowUpDown className="ml-2 h-4 w-4" />
-                </Button>
-            )
-        }
+        accessorKey: "DOI",
+        header: "DOI",
     },
     {
         accessorKey: "paperLink",

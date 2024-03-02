@@ -69,7 +69,7 @@ export default function GrantForm() {
                                             <Button
                                                 variant={"outline"}
                                                 className={cn(
-                                                    "w-[240px] pl-3 text-left font-normal",
+                                                    "w-full pl-3 text-left font-normal",
                                                     !field.value && "text-muted-foreground"
                                                 )}
                                             >
@@ -115,31 +115,31 @@ export default function GrantForm() {
                     />
                 </div>
                 <FormField
-                        control={form.control}
-                        name="status"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Status</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <FormControl>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Select the Status" />
-                                        </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                        {
-                                            (GrantStatus as string[]).map((staus: string, index: number) => {
-                                                return (
-                                                    <SelectItem value={staus} key={index}>{staus}</SelectItem>
-                                                )
-                                            })
-                                        }
-                                    </SelectContent>
-                                </Select>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
+                    control={form.control}
+                    name="status"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Status</FormLabel>
+                            <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <FormControl>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select the Status" />
+                                    </SelectTrigger>
+                                </FormControl>
+                                <SelectContent>
+                                    {
+                                        (GrantStatus as string[]).map((staus: string, index: number) => {
+                                            return (
+                                                <SelectItem value={staus} key={index}>{staus}</SelectItem>
+                                            )
+                                        })
+                                    }
+                                </SelectContent>
+                            </Select>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
                 <Button type="submit" variant={"outline"} className="bg-green-400 hover:bg-green-500 w-full">
                     Submit
                 </Button>

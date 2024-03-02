@@ -47,6 +47,11 @@ export const columns: ColumnDef<Grant>[] = [
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             )
+        },
+        cell: ({ cell }) => {
+            return (
+                (cell.getValue() as Date).toLocaleDateString()
+            )
         }
     },
     {
@@ -61,7 +66,16 @@ export const columns: ColumnDef<Grant>[] = [
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             )
-        }
+        },
+        cell: ({ row }) => {
+            const amount = parseFloat(row.getValue("grantAmount"))
+            const formatted = new Intl.NumberFormat("en-IN", {
+                style: "currency",
+                currency: "INR",
+            }).format(amount)
+
+            return <div className="text-center font-medium">{formatted}</div>
+        },
     },
     {
         accessorKey: "status",
@@ -77,15 +91,26 @@ export const columns: ColumnDef<Grant>[] = [
             )
         },
         cell: ({ cell }) => {
-            return (cell.getValue() === true) ? (
-                <span className="rounded px-2 py-1 bg-green-400">
-                    Approved
-                </span>
-            ) : (
-                <span className="rounded px-2 py-1 bg-red-400">
-                    Rejected
-                </span>
-            )
+            if (cell.getValue() === "Accepted") {
+                return (
+                    <span className="rounded px-2 py-1 bg-green-400">
+                        Accepted
+                    </span>
+                )
+            }
+            else if (cell.getValue() === "Rejected") {
+                return (
+                    <span className="rounded px-2 py-1 bg-red-400">
+                        Rejected
+                    </span>
+                )
+            } else {
+                return (
+                    <span className="rounded px-2 py-1 bg-gray-400">
+                        Waiting
+                    </span>
+                )
+            }
         }
     },
 ]

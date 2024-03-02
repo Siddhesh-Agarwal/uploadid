@@ -2,17 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Conference } from "@/types/Conference";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import Link from "next/link";
+import { FaLink } from "react-icons/fa6";
 
 export const columns: ColumnDef<Conference>[] = [
     {
-        accessorKey: "facultyName",
+        accessorKey: "facultyID",
         header: ({ column }) => {
             return (
                 <Button
                     variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
-                    Faculty Name
+                    Faculty ID
                     <ArrowUpDown className="ml-2 h-4 w-4" />
                 </Button>
             )
@@ -37,7 +39,7 @@ export const columns: ColumnDef<Conference>[] = [
         header: ({ column }) => {
             return (
                 <Button
-                variant="ghost"
+                    variant="ghost"
                     onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
                 >
                     Date of Event
@@ -45,6 +47,11 @@ export const columns: ColumnDef<Conference>[] = [
                 </Button>
             )
         },
+        cell: ({ cell }) => {
+            return (
+                (cell.getValue() as Date).toLocaleDateString()
+            )
+        }
     },
     {
         accessorKey: "eventVenue",
@@ -53,5 +60,13 @@ export const columns: ColumnDef<Conference>[] = [
     {
         accessorKey: "link",
         header: "Link",
+        cell: ({ cell }) => {
+            return (
+                <Link href={cell.getValue() || "https://google.com"} className="flex hover:underline" target="_blank">
+                    Link
+                    <FaLink className="ml-1" />
+                </Link>
+            )
+        }
     },
 ]

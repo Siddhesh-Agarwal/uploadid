@@ -49,7 +49,7 @@ export const columns: ColumnDef<Patent>[] = [
         },
     },
     {
-        accessorKey: "facultyIds",
+        accessorKey: "facultyID",
         header: "Faculty ID",
     },
     {

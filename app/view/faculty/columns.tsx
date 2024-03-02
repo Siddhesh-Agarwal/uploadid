@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Faculty } from "@/types/Faculty";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import Link from "next/link";
+import { FaLink } from "react-icons/fa6";
 
 export const columns: ColumnDef<Faculty>[] = [
     {
@@ -63,5 +65,13 @@ export const columns: ColumnDef<Faculty>[] = [
     {
         accessorKey: "email",
         header: "Email ID",
+        cell: ({ cell }) => {
+            return (
+                <Link href={`mainto:${cell.getValue() || "admin@skcet.ac.in"}`} className="flex hover:underline">
+                    Link
+                    <FaLink className="ml-1" />
+                </Link>
+            )
+        }
     },
 ]

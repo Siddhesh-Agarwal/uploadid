@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Course } from "@/types/Course";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import Link from "next/link";
+import { FaLink } from "react-icons/fa6";
 
 export const columns: ColumnDef<Course>[] = [
     {
@@ -47,9 +49,14 @@ export const columns: ColumnDef<Course>[] = [
                 </Button>
             )
         },
+        cell: ({ cell }) => {
+            return (
+                (cell.getValue() as Date).toLocaleDateString()
+            )
+        }
     },
     {
-        accessorKey: "facultyId",
+        accessorKey: "facultyID",
         header: ({ column }) => {
             return (
                 <Button
@@ -64,6 +71,14 @@ export const columns: ColumnDef<Course>[] = [
     },
     {
         accessorKey: "certificateLink",
-        header: "Link"
+        header: "Link",
+        cell: ({ cell }) => {
+            return (
+                <Link href={cell.getValue() || "https://google.com"} className="flex hover:underline">
+                    Link
+                    <FaLink className="ml-1" />
+                </Link>
+            )
+        }
     }
 ]

@@ -60,7 +60,7 @@ export default function CourseForm() {
                         control={form.control}
                         name="dateOfCompletion"
                         render={({ field }) => (
-                            <FormItem className="w-1/2">
+                            <FormItem className="w-1/2 mr-1">
                                 <FormLabel>Date of Completion</FormLabel>
                                 <Popover>
                                     <PopoverTrigger asChild>
@@ -68,7 +68,7 @@ export default function CourseForm() {
                                             <Button
                                                 variant={"outline"}
                                                 className={cn(
-                                                    "w-[240px] pl-3 text-left font-normal",
+                                                    "w-full pl-3 text-left font-normal",
                                                     !field.value && "text-muted-foreground"
                                                 )}
                                             >
@@ -99,9 +99,9 @@ export default function CourseForm() {
                     />
                     <FormField
                         control={form.control}
-                        name="facultyId"
+                        name="facultyID"
                         render={({ field }) => (
-                            <FormItem className="w-1/2">
+                            <FormItem className="w-1/2 ml-1">
                                 <FormLabel>
                                     Faculty ID
                                 </FormLabel>

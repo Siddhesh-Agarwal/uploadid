@@ -26,14 +26,14 @@ export default function ConferenceForm() {
                 </h1>
                 <FormField
                     control={form.control}
-                    name="facultyName"
+                    name="facultyID"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>
-                                Faculty Name
+                                Faculty ID
                             </FormLabel>
                             <FormControl>
-                                <Input placeholder="Jane Doe" {...field} />
+                                <Input placeholder="CSE001" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
