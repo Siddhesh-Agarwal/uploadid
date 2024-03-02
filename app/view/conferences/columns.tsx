@@ -1,14 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { Conference } from "@/types/Conference";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-
-export type Conference = {
-    facultyName: string;
-    eventName: string;
-    eventVenue: string;
-    dateOfEvent: string;
-    link: string;
-}
 
 export const columns: ColumnDef<Conference>[] = [
     {

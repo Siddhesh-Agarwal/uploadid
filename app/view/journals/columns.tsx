@@ -1,19 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Journal } from "@/types/Journal";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import Link from "next/link";
 import { FaLink } from "react-icons/fa6";
-
-export type Journal = {
-    publisher: string;
-    nameOfJournal: string;
-    dateOfPublication: string;
-    facultyIds: string;
-    paperLink: string;
-    journalLink: string;
-}
 
 export const columns: ColumnDef<Journal>[] = [
     {

@@ -1,7 +1,8 @@
 "use client";
 
-import { Patent, columns } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
+import { Patent } from "@/types/Patent";
+import { columns } from "./columns"
 
 const patents: Patent[] = [
     { "publisher": "Brainverse", "title": "Attention is all you need", "dateOfPublication": "9/1/2006", "facultyIds": "1", "journalLink": "https://goo.ne.jp/sed.aspx?parturient=sapien&montes=in&nascetur=sapien&ridiculus=iaculis&mus=congue&etiam=vivamus&vel=metus&augue=arcu&vestibulum=adipiscing&rutrum=molestie&rutrum=hendrerit&neque=at&aenean=vulputate&auctor=vitae&gravida=nisl&sem=aenean&praesent=lectus&id=pellentesque&massa=eget&id=nunc&nisl=donec&venenatis=quis&lacinia=orci&aenean=eget&sit=orci&amet=vehicula&justo=condimentum&morbi=curabitur&ut=in&odio=libero&cras=ut&mi=massa&pede=volutpat&malesuada=convallis&in=morbi&imperdiet=odio&et=odio&commodo=elementum&vulputate=eu&justo=interdum&in=eu&blandit=tincidunt&ultrices=in&enim=leo&lorem=maecenas&ipsum=pulvinar&dolor=lobortis&sit=est&amet=phasellus&consectetuer=sit&adipiscing=amet&elit=erat&proin=nulla&interdum=tempus&mauris=vivamus&non=in&ligula=felis&pellentesque=eu&ultrices=sapien&phasellus=cursus&id=vestibulum&sapien=proin&in=eu&sapien=mi&iaculis=nulla&congue=ac&vivamus=enim&metus=in&arcu=tempor&adipiscing=turpis&molestie=nec&hendrerit=euismod&at=scelerisque&vulputate=quam&vitae=turpis&nisl=adipiscing&aenean=lorem&lectus=vitae&pellentesque=mattis&eget=nibh&nunc=ligula&donec=nec&quis=sem&orci=duis&eget=aliquam&orci=convallis&vehicula=nunc" },

@@ -1,16 +1,9 @@
 import { Button } from "@/components/ui/button";
+import { Patent } from "@/types/Patent";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import Link from "next/link";
 import { FaLink } from "react-icons/fa6";
-
-export type Patent = {
-    publisher: string;
-    title: string;
-    dateOfPublication: string;
-    facultyIds: string;
-    journalLink: string;
-}
 
 export const columns: ColumnDef<Patent>[] = [
     {

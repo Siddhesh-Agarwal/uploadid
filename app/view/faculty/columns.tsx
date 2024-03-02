@@ -1,14 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { Faculty } from "@/types/Faculty";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-
-export type Faculty = {
-    facultyName: string;
-    department: string;
-    designation: "Assistant Professor" | "Assosiate Professor" | "Professor";
-    email: string;
-    facultyID: string;
-}
 
 export const columns: ColumnDef<Faculty>[] = [
     {

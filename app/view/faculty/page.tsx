@@ -1,7 +1,8 @@
 "use client";
 
 import { DataTable } from "@/components/ui/data-table";
-import { Faculty, columns } from "./columns";
+import { Faculty } from "@/types/Faculty";
+import { columns } from "./columns";
 
 const faculties: Faculty[] = []
 

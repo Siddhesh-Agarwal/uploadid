@@ -1,16 +1,9 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Course } from "@/types/Course";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-
-export type Course = {
-    courseName: string;
-    courseProvider: string;
-    dateOfCompletion: string;
-    facultyId: string;
-    certificateLink: string;
-}
 
 export const columns: ColumnDef<Course>[] = [
     {

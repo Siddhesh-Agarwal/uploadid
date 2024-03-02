@@ -1,7 +1,8 @@
 "use client";
 
 import { DataTable } from "@/components/ui/data-table";
-import { Conference, columns } from "./columns";
+import { Conference } from "@/types/Conference";
+import { columns } from "./columns";
 
 const conferences: Conference[] = []
 

@@ -1,5 +1,6 @@
-import { Grant, columns } from "./columns"
 import { DataTable } from "@/components/ui/data-table"
+import { Grant } from "@/types/Grant"
+import { columns } from "./columns"
 
 const grants: Grant[] = [
     { "proposedBy": "Ofelia Vaggers", "title": "Domainer", "appliedOn": "2021-07-29", "grantAmount": 359800, "status": false },

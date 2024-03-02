@@ -1,18 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Grant } from "@/types/Grant";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
-import Link from "next/link";
-import { FaLink } from "react-icons/fa6";
 
-export type Grant = {
-    proposedBy: string;
-    title: string;
-    appliedOn: string;
-    grantAmount: number;
-    status: boolean;
-}
 
 export const columns: ColumnDef<Grant>[] = [
     {
