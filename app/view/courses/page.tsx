@@ -2,28 +2,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { Course } from "@/types/Course";
 import { columns } from "./columns";
 
-const courses: Course[] = [
-    { courseName: "Introduction to Data Science", courseProvider: "DataCamp", dateOfCompletion: new Date("2023-06-15"), facultyID: "FC101", certificateLink: "#" },
-    { courseName: "JavaScript for Beginners", courseProvider: "Udemy", dateOfCompletion: new Date("2023-03-19"), facultyID: "FC102", certificateLink: "#" },
-    { courseName: "Python Fundamentals", courseProvider: "Coursera", dateOfCompletion: new Date("2023-09-22"), facultyID: "FC103", certificateLink: "#" },
-    { courseName: "Web Development Masterclass", courseProvider: "edX", dateOfCompletion: new Date("2023-11-30"), facultyID: "FC104", certificateLink: "#" },
-    { courseName: "Machine Learning Techniques", courseProvider: "Udacity", dateOfCompletion: new Date("2023-07-10"), facultyID: "FC105", certificateLink: "#" },
-    { courseName: "Introduction to Data Science", courseProvider: "DataCamp", dateOfCompletion: new Date("2023-06-15"), facultyID: "FC101", certificateLink: "#" },
-    { courseName: "JavaScript for Beginners", courseProvider: "Udemy", dateOfCompletion: new Date("2023-03-19"), facultyID: "FC102", certificateLink: "#" },
-    { courseName: "Python Fundamentals", courseProvider: "Coursera", dateOfCompletion: new Date("2023-09-22"), facultyID: "FC103", certificateLink: "#" },
-    { courseName: "Web Development Masterclass", courseProvider: "edX", dateOfCompletion: new Date("2023-11-30"), facultyID: "FC104", certificateLink: "#" },
-    { courseName: "Machine Learning Techniques", courseProvider: "Udacity", dateOfCompletion: new Date("2023-07-10"), facultyID: "FC105", certificateLink: "#" },
-    { courseName: "Introduction to Data Science", courseProvider: "DataCamp", dateOfCompletion: new Date("2023-06-15"), facultyID: "FC101", certificateLink: "#" },
-    { courseName: "JavaScript for Beginners", courseProvider: "Udemy", dateOfCompletion: new Date("2023-03-19"), facultyID: "FC102", certificateLink: "#" },
-    { courseName: "Python Fundamentals", courseProvider: "Coursera", dateOfCompletion: new Date("2023-09-22"), facultyID: "FC103", certificateLink: "#" },
-    { courseName: "Web Development Masterclass", courseProvider: "edX", dateOfCompletion: new Date("2023-11-30"), facultyID: "FC104", certificateLink: "#" },
-    { courseName: "Machine Learning Techniques", courseProvider: "Udacity", dateOfCompletion: new Date("2023-07-10"), facultyID: "FC105", certificateLink: "#" },
-    { courseName: "Introduction to Data Science", courseProvider: "DataCamp", dateOfCompletion: new Date("2023-06-15"), facultyID: "FC101", certificateLink: "#" },
-    { courseName: "JavaScript for Beginners", courseProvider: "Udemy", dateOfCompletion: new Date("2023-03-19"), facultyID: "FC102", certificateLink: "#" },
-    { courseName: "Python Fundamentals", courseProvider: "Coursera", dateOfCompletion: new Date("2023-09-22"), facultyID: "FC103", certificateLink: "#" },
-    { courseName: "Web Development Masterclass", courseProvider: "edX", dateOfCompletion: new Date("2023-11-30"), facultyID: "FC104", certificateLink: "#" },
-    { courseName: "Machine Learning Techniques", courseProvider: "Udacity", dateOfCompletion: new Date("2023-07-10"), facultyID: "FC105", certificateLink: "#" },
-]
+const courses: Course[] = []
 
 export default function ViewCertificationsPage() {
     return (
