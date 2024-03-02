@@ -35,7 +35,7 @@ export default function PatentForm() {
                                 Publisher
                             </FormLabel>
                             <FormControl>
-                                <Input placeholder="1234567da890" {...field} />
+                                <Input placeholder="ArXive" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -51,7 +51,7 @@ export default function PatentForm() {
                                 Title
                             </FormLabel>
                             <FormControl>
-                                <Input placeholder="1234567da890" {...field} />
+                                <Input placeholder="Patent title here..." {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
