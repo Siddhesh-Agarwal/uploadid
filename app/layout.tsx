@@ -8,10 +8,10 @@ import "./globals.css";
 const inter = Noto_Sans({ subsets: ["cyrillic"] });
 
 export const metadata: Metadata = {
-  title: "Upload-it",
-  description: "An Application to help faculty keep track of their certifications.",
-};
-
+  title: "Uploadid",
+  description: "An Application to helps organizations keep track of their employees participations.",
+  icons: "./favicon.ico"
+}
 
 export default function RootLayout({
   children,
