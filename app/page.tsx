@@ -8,7 +8,7 @@ export default function Home() {
           <h2 className="text-3xl mb-3 lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
             Record Management
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r dark:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 dark:from-pink-500 dark:via-purple-400 dark:to-indigo-500">
+            <span className="text-transparent bg-clip-text font-semibold bg-gradient-to-r dark:bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 dark:from-pink-500 dark:via-purple-400 dark:to-indigo-500">
               straight in your browser
             </span>
           </h2>

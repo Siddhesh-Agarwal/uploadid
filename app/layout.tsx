@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import { Fira_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
+import ReduxProvider from "./redux-provider";
 import "./globals.css";
 
-
-const inter = Noto_Sans({ subsets: ["cyrillic"] });
+const font = Fira_Sans({
+  weight: "400",
+  subsets: ["cyrillic", "greek"],
+});
 
 export const metadata: Metadata = {
   title: "Uploadid",
@@ -20,16 +23,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
-          {children}
-        </ThemeProvider>
+      <body className={font.className}>
+        <ReduxProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
+            {children}
+          </ThemeProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
