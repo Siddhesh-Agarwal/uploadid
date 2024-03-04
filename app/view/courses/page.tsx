@@ -1,3 +1,5 @@
+"use client";
+
 import { DataTable } from "@/components/ui/data-table";
 import { Course } from "@/types/Course";
 import { columns } from "./columns";
