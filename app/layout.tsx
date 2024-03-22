@@ -3,7 +3,9 @@ import { Fira_Sans } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/Navbar";
 import ReduxProvider from "./redux-provider";
+import typescript from "typescript";
 import "./globals.css";
+
 
 const font = Fira_Sans({
   weight: "400",

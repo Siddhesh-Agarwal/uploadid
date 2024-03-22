@@ -1,3 +1,5 @@
+import { date, integer, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
 export const JournalPublishers: string[] = [
@@ -40,15 +42,23 @@ export const JournalTypes: string[] = [
     "UGC care",
 ]
 
-export const JournalSchema = z.object({
-    facultyID: z.coerce.string(),
-    publisher: z.coerce.string(),
-    nameOfJournal: z.coerce.string(),
+export const journalTable = pgTable("journals", {
+    id: serial("id").primaryKey(),
+    facultyID: varchar("faculty_id", { length: 10 }).notNull(),
+    publisher: text("publisher").notNull(),
+    nameOfJournal: text("name_of_journal").notNull(),
+    journalType: text("journal_type").array().notNull(),
+    dateOfPublication: date("date_of_publication").notNull(),
+    DOI: text("doi").notNull(),
+    issueNumber: integer("issue_number").notNull(),
+    volumeNumber: integer("volume_number").notNull(),
+    paperLink: text("paper_link").notNull(),
+    journalLink: text("journal_link").notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
+})
+
+export const JournalSchema = createInsertSchema(journalTable,{
     journalType: z.array(z.coerce.string()).refine((value) => value.some((item) => item), { message: "Select at least one type" }),
-    dateOfPublication: z.coerce.date(),
-    DOI: z.coerce.string(),
-    issueNumber: z.coerce.number(),
-    volumeNumber: z.coerce.number(),
     paperLink: z.coerce.string().url({ message: "Invalid URL" }).startsWith("https://", { message: "Secure URL required." }),
     journalLink: z.coerce.string().url({ message: "Invalid URL" }).startsWith("https://", { message: "Secure URL required." }),
 })

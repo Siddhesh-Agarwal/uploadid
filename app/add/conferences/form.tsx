@@ -1,10 +1,11 @@
+import { db } from "@/app/db";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Conference, ConferenceSchema } from "@/types/Conference";
+import { Conference, ConferenceSchema, conferenceTable } from "@/types/Conference";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
@@ -14,8 +15,8 @@ export default function ConferenceForm() {
     const form = useForm<Conference>({
         resolver: zodResolver(ConferenceSchema)
     });
-    function onSubmit(values: Conference) {
-        // TODO: add to supabase
+    async function onSubmit(values: Conference) {
+        await db.insert(conferenceTable).values(values);
         console.log(values);
     }
     return (
@@ -102,7 +103,6 @@ export default function ConferenceForm() {
                                     <PopoverContent className="w-auto p-0" align="start">
                                         <Calendar
                                             mode="single"
-                                            selected={field.value}
                                             onSelect={field.onChange}
                                             disabled={(date) =>
                                                 date > new Date() || date < new Date("1900-01-01")

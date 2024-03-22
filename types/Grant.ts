@@ -1,13 +1,23 @@
+import { date, integer, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
+import { createInsertSchema } from 'drizzle-zod';
 import { z } from "zod";
 
-export const GrantStatus: string[] = ["Accepted", "Waiting", "Rejected"]
 
-export const GrantSchema = z.object({
-    proposedBy: z.coerce.string(),
-    title: z.coerce.string(),
-    appliedOn: z.coerce.date(),
-    grantAmount: z.coerce.number(),
-    status: z.enum(["Accepted", "Waiting", "Rejected"]),
+export const GrantStatus: readonly string[] = ["Accepted", "Waiting", "Rejected"]
+
+export const grantTable = pgTable("grants", {
+    id: serial("id").primaryKey(),
+    proposedBy: varchar("faculty_id", { length: 10 }).notNull(),
+    title: text("title").notNull(),
+    appliedOn: date("applied_on").notNull(),
+    grantAmount: integer("grant_amount").notNull(),
+    status: text("status", {
+        enum: ["Accepted", "Waiting", "Rejected"]
+    }).notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
 })
+
+
+export const GrantSchema = createInsertSchema(grantTable)
 
 export type Grant = z.infer<typeof GrantSchema>

@@ -1,35 +1,26 @@
 "use client";
 
-import { useTheme } from "next-themes"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu"
 import { Button } from "./ui/button"
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./ui/navigation-menu"
 import Link from "next/link"
+import { useTheme } from "next-themes"
+import { useEffect } from "react";
 import { FaEye, FaMoon, FaPlus, FaSun } from "react-icons/fa6";
 
 function ModeToggle() {
-    const { setTheme } = useTheme()
+    const { theme, setTheme, systemTheme } = useTheme()
+    useEffect(() => {
+        if (systemTheme) {
+            setTheme(systemTheme)
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [systemTheme])
     return (
-        <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="icon">
-                    <FaSun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <FaMoon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                    <span className="sr-only">Toggle theme</span>
-                </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => setTheme("light")}>
-                    Light
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("dark")}>
-                    Dark
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => setTheme("system")}>
-                    System
-                </DropdownMenuItem>
-            </DropdownMenuContent>
-        </DropdownMenu>
+        <Button variant="outline" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+            <FaSun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+            <FaMoon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <span className="sr-only">Toggle theme</span>
+        </Button>
     )
 }
 
@@ -56,11 +47,14 @@ export default function Navbar() {
             </NavigationMenuList>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <Link href="/auth/login/" legacyBehavior passHref>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            Login
-                        </NavigationMenuLink>
-                    </Link>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        Login
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        Register
+                    </NavigationMenuLink>
                 </NavigationMenuItem>
                 <ModeToggle />
             </NavigationMenuList>

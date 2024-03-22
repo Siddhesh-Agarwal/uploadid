@@ -1,3 +1,4 @@
+import { db } from "@/app/db";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -6,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Journal, JournalNames, JournalPublishers, JournalSchema, JournalTypes } from "@/types/Journal"
+import { Journal, JournalNames, JournalPublishers, JournalSchema, JournalTypes, journalTable } from "@/types/Journal"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns";
 import { useForm } from "react-hook-form"
@@ -19,8 +20,8 @@ export default function JournalForm() {
             journalType: ["Wos", "Scopus", "UGC care"],
         },
     })
-    function onSubmit(values: Journal) {
-        // TODO: add to supabase
+    async function onSubmit(values: Journal) {
+        await db.insert(journalTable).values(values);
         console.log(values);
     }
 
@@ -180,7 +181,6 @@ export default function JournalForm() {
                                     <PopoverContent className="w-auto p-0" align="start">
                                         <Calendar
                                             mode="single"
-                                            selected={field.value}
                                             onSelect={field.onChange}
                                             disabled={(date) =>
                                                 date > new Date() || date < new Date("1900-01-01")

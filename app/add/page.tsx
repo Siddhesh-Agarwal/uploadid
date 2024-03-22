@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { FaArrowRight, FaBook, FaBookOpen, FaChalkboardUser, FaGraduationCap, FaHandshake, FaMoneyBill, FaMoneyBillTrendUp } from "react-icons/fa6";
+import { FaBook, FaBookOpen, FaChalkboardUser, FaGraduationCap, FaHandshake, FaMoneyBill, FaMoneyBillTrendUp } from "react-icons/fa6";
+import "dotenv/config"
 
 type ViewLink = {
     title: string;
@@ -48,6 +49,7 @@ const viewLinks: ViewLink[] = [
 ]
 
 export default function ViewPage() {
+    
     return (
         <main className="w-full px-3 py-6">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
