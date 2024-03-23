@@ -19,31 +19,31 @@ const viewLinks: ViewLink[] = [
     {
         title: "Courses",
         description: "List of course completed by Faculty.",
-        link: "/add/courses",
+        link: "/add/course",
         icon: <FaGraduationCap />,
     },
     {
         title: "Journals",
         description: "List of Faculty contributions to journals.",
-        link: "/add/journals",
+        link: "/add/journal",
         icon: <FaBook />,
     },
     {
         title: "Conferences",
         description: "List of conferences attended by Faculty.",
-        link: "/add/conferences",
+        link: "/add/conference",
         icon: <FaHandshake />
     },
     {
         title: "Patents",
         description: "List of Patents filed by Faculty.",
-        link: "/add/patents",
+        link: "/add/patent",
         icon: <FaBookOpen />,
     },
     {
         title: "Grants",
         description: "List of grants proposed by the Faculty.",
-        link: "/add/grants",
+        link: "/add/grant",
         icon: <FaMoneyBillTrendUp />,
     },
 ]

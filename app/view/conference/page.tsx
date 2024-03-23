@@ -13,6 +13,9 @@ export default function ViewConferencesPage() {
     if(!data) {
         return <NotAllowedPage />
     }
+    function getConferences() {
+        "use server";
+    }
 
     return (
         <main className="w-full px-3 py-6">
