@@ -1,4 +1,4 @@
-import { Course, CourseSchema, courseTable } from "@/types/Course";
+import { Course, CourseSchema } from "@/types/Course";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -9,14 +9,13 @@ import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { FaCalendar } from "react-icons/fa6";
 import { Calendar } from "@/components/ui/calendar";
-import { db } from "@/app/db";
 
 export default function CourseForm() {
     const form = useForm<Course>({
         resolver: zodResolver(CourseSchema)
     })
     async function onSubmit(values: Course) {
-        await db.insert(courseTable).values(values);
+        // TODO: add to supabase
         console.log(values);
     }
 

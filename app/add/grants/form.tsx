@@ -1,4 +1,3 @@
-import { db } from "@/app/db";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -6,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Grant, GrantSchema, GrantStatus, grantTable } from "@/types/Grant";
+import { Grant, GrantSchema, GrantStatus } from "@/types/Grant";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
@@ -17,7 +16,7 @@ export default function GrantForm() {
         resolver: zodResolver(GrantSchema)
     })
     async function onSubmit(values: Grant) {
-        await db.insert(grantTable).values(values);
+        // TODO: add to supabase
         console.log(values);
     }
 

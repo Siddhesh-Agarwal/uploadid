@@ -1,11 +1,10 @@
-import { db } from "@/app/db";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Patent, PatentSchema, patentTable } from "@/types/Patent";
+import { Patent, PatentSchema } from "@/types/Patent";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
@@ -16,7 +15,7 @@ export default function PatentForm() {
         resolver: zodResolver(PatentSchema)
     })
     async function onSubmit(values: Patent) {
-        await db.insert(patentTable).values(values);
+        // TODO: add to supabase
         console.log(values);
     }
 

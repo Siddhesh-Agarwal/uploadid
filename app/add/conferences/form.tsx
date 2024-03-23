@@ -1,11 +1,10 @@
-import { db } from "@/app/db";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Conference, ConferenceSchema, conferenceTable } from "@/types/Conference";
+import { Conference, ConferenceSchema } from "@/types/Conference";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
@@ -16,7 +15,7 @@ export default function ConferenceForm() {
         resolver: zodResolver(ConferenceSchema)
     });
     async function onSubmit(values: Conference) {
-        await db.insert(conferenceTable).values(values);
+        // TODO: add to supabase
         console.log(values);
     }
     return (

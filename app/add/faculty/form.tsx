@@ -1,9 +1,8 @@
-import { db } from "@/app/db";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Faculty, FacultySchema, departments, designations, facultyTable } from "@/types/Faculty";
+import { Faculty, FacultySchema, departments, designations } from "@/types/Faculty";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form";
 
@@ -13,7 +12,7 @@ export default function FacultyForm() {
     })
 
     async function onSubmit(values: Faculty) {
-        await db.insert(facultyTable).values(values);
+        // TODO: add to supabase
         console.log(values);
     }
     return (
