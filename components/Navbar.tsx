@@ -28,7 +28,7 @@ export default function Navbar() {
     return (
         <NavigationMenu className="flex w-full py-2 px-3 md:px-6 lg:px-8 border-b border-gray-200 dark:border-gray-800 justify-between">
             <NavigationMenuList>
-                <NavigationMenuItem>
+                <NavigationMenuItem className="bg-inherit">
                     <Link href="/view" legacyBehavior passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <FaEye className="mr-1 font-bold" />
@@ -56,7 +56,9 @@ export default function Navbar() {
                         Register
                     </NavigationMenuLink>
                 </NavigationMenuItem>
-                <ModeToggle />
+                <NavigationMenuItem>
+                    <ModeToggle />
+                </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu>
     )

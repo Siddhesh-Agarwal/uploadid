@@ -5,6 +5,8 @@ import { Faculty } from "@/types/Faculty";
 import { columns } from "./columns";
 import NotAllowedPage from "@/app/not-allowed";
 import { useAppSelector } from "@/app/redux/hooks";
+import { Suspense } from "react";
+import { TableSkeleton } from "@/components/tableSkeleton";
 
 const faculties: Faculty[] = []
 
@@ -20,7 +22,9 @@ export default function ViewFacultyPage() {
                 Faculties
             </h1>
             <div className="container mx-auto py-10">
-                <DataTable data={faculties} columns={columns} />
+                <Suspense fallback={<TableSkeleton />}>
+                    <DataTable data={faculties} columns={columns} />
+                </Suspense>
             </div>
         </main>
     )
