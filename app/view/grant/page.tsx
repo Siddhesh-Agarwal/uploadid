@@ -4,7 +4,7 @@ import { DataTable } from "@/components/ui/data-table"
 import { Grant } from "@/types/Grant"
 import { columns } from "./columns"
 import NotAllowedPage from "@/app/not-allowed";
-import { useAppSelector } from "@/app/redux/hooks";
+import { useAppSelector } from "@/app/_redux/hooks";
 import { TableSkeleton } from "@/components/tableSkeleton";
 import { Suspense } from "react";
 

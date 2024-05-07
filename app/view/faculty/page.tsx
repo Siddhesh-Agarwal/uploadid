@@ -4,7 +4,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { Faculty } from "@/types/Faculty";
 import { columns } from "./columns";
 import NotAllowedPage from "@/app/not-allowed";
-import { useAppSelector } from "@/app/redux/hooks";
+import { useAppSelector } from "@/app/_redux/hooks";
 import { Suspense } from "react";
 import { TableSkeleton } from "@/components/tableSkeleton";
 

@@ -3,7 +3,7 @@
 import { PropsWithChildren } from "react";
 
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { store } from "./_redux/store";
 
 export default function ReduxProvider({ children }: PropsWithChildren<any>) {
     return (

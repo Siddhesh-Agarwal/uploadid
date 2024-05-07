@@ -2,7 +2,7 @@
 
 import { DataTable } from "@/components/ui/data-table";
 import { Conference } from "@/types/Conference";
-import { useAppSelector } from "@/app/redux/hooks";
+import { useAppSelector } from "@/app/_redux/hooks";
 import NotAllowedPage from "@/app/not-allowed";
 import { columns } from "./columns";
 import { Suspense } from 'react'
