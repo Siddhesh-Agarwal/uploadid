@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Fira_Sans } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
+import Provider from "./provider";
 import Navbar from "@/components/Navbar";
-import ReduxProvider from "./redux-provider";
 import "./globals.css";
 
 
@@ -25,17 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <ReduxProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <Provider>
             <Navbar />
             {children}
-          </ThemeProvider>
-        </ReduxProvider>
+        </Provider>
       </body>
     </html>
   );

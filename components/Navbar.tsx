@@ -5,7 +5,8 @@ import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuL
 import Link from "next/link"
 import { useTheme } from "next-themes"
 import { useEffect } from "react";
-import { FaEye, FaMoon, FaPlus, FaSun } from "react-icons/fa6";
+import { FaEye, FaMoon, FaPlus, FaRightFromBracket, FaRightToBracket, FaSun } from "react-icons/fa6";
+import { SignInButton, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
 
 function ModeToggle() {
     const { theme, setTheme, systemTheme } = useTheme()
@@ -47,14 +48,20 @@ export default function Navbar() {
             </NavigationMenuList>
             <NavigationMenuList>
                 <NavigationMenuItem>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        Login
-                    </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        Register
-                    </NavigationMenuLink>
+                    <SignedIn>
+                        <SignOutButton>
+                            <Button variant="outline" size="icon">
+                                <FaRightFromBracket />
+                            </Button>
+                        </SignOutButton>
+                    </SignedIn>
+                    <SignedOut>
+                        <SignInButton mode="modal">
+                            <Button variant="outline" size="icon">
+                                <FaRightToBracket />
+                            </Button>
+                        </SignInButton>
+                    </SignedOut>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <ModeToggle />
