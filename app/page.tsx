@@ -13,7 +13,7 @@ export default function Home() {
             </span>
           </h2>
           <p className="max-w-xl mx-auto text-lg text-gray-600 dark:text-gray-400 md:text-lg text-justify">
-            <strong>Uploadid</strong> is a Record Management System that enables the Management of different types of data
+            <strong>Uploadid</strong> is a Record Management System that enables the Management of College or University data
             through an easy to understand Web User Interface.
           </p>
           <div className="mt-6 text-center md:ml-6 flex flex-row justify-center">

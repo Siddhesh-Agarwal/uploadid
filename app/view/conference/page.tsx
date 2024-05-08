@@ -9,16 +9,22 @@ import { Suspense } from 'react'
 import { TableSkeleton } from "@/components/tableSkeleton";
 
 
-const conferences: Conference[] = []
+
+async function getConferences() {
+    const res = await fetch('/view/conference')
+    if (!res.ok) {
+        throw new Error('Failed to fetch conferences')
+    }
+    return res.json() as Promise<Conference[]>
+}
 
 export default function ViewConferencesPage() {
+    const conferences: Conference[] = [];
+
     const data = useAppSelector((state) => state.data.profile);
     if (!data) {
         return <NotAllowedPage />
     }
-    // function getConferences() {
-    //     "use server";
-    // }
 
     return (
         <main className="w-full px-3 py-6">
