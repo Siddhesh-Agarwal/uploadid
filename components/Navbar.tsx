@@ -1,8 +1,9 @@
 "use client";
 
+import Link from "next/link"
+import Image from "next/image"
 import { Button } from "./ui/button"
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./ui/navigation-menu"
-import Link from "next/link"
 import { useTheme } from "next-themes"
 import { useEffect } from "react";
 import { FaEye, FaMoon, FaPlus, FaRightFromBracket, FaRightToBracket, FaSun } from "react-icons/fa6";
@@ -30,7 +31,14 @@ export default function Navbar() {
         <NavigationMenu className="flex w-full py-2 px-3 md:px-6 lg:px-8 border-b border-gray-200 dark:border-gray-800 justify-between">
             <NavigationMenuList>
                 <NavigationMenuItem className="bg-inherit">
-                    <Link href="/view" legacyBehavior passHref>
+                    <Link href="/" legacyBehavior passHref prefetch>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            <Image src="/logo.svg" alt="Logo" width={32} height={32} />
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem>
+                <NavigationMenuItem className="bg-inherit">
+                    <Link href="/view" legacyBehavior passHref prefetch>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <FaEye className="mr-1 font-bold" />
                             View
@@ -38,7 +46,7 @@ export default function Navbar() {
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/add" legacyBehavior passHref>
+                    <Link href="/add" legacyBehavior passHref prefetch>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <FaPlus className="mr-1 font-bold" />
                             Add
