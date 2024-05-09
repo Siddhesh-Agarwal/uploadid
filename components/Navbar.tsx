@@ -3,11 +3,11 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "./ui/button"
-import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./ui/navigation-menu"
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle, NavigationMenuIndicator } from "./ui/navigation-menu"
 import { useTheme } from "next-themes"
 import { useEffect } from "react";
 import { FaEye, FaMoon, FaPlus, FaRightFromBracket, FaRightToBracket, FaSun } from "react-icons/fa6";
-import { SignInButton, SignOutButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 function ModeToggle() {
     const { theme, setTheme, systemTheme } = useTheme()
@@ -55,26 +55,21 @@ export default function Navbar() {
                 </NavigationMenuItem>
             </NavigationMenuList>
             <NavigationMenuList>
-                <NavigationMenuItem>
-                    <SignedIn>
-                        <SignOutButton>
-                            <Button variant="outline" size="icon">
-                                <FaRightFromBracket />
-                            </Button>
-                        </SignOutButton>
-                    </SignedIn>
-                    <SignedOut>
-                        <SignInButton mode="modal">
-                            <Button variant="outline" size="icon">
-                                <FaRightToBracket />
-                            </Button>
-                        </SignInButton>
-                    </SignedOut>
-                </NavigationMenuItem>
+                <SignedIn>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        <UserButton userProfileMode="modal" />
+                    </NavigationMenuLink>
+                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        <SignOutButton />
+                    </NavigationMenuLink>
+                </SignedIn>
+                <SignedOut>
+                    <SignInButton mode="modal" />
+                </SignedOut>
                 <NavigationMenuItem>
                     <ModeToggle />
                 </NavigationMenuItem>
             </NavigationMenuList>
-        </NavigationMenu>
+        </NavigationMenu >
     )
 }
