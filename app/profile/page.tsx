@@ -4,7 +4,7 @@ import { FaEnvelope, FaIdBadge } from "react-icons/fa6"
 import { createAvatar } from '@dicebear/core';
 import { initials } from "@dicebear/collection"
 import { useAppSelector } from "../_redux/hooks";
-import NotAllowedPage from "../not-allowed";
+import NotAllowedPage from "../../components/not-allowed";
 
 
 export default function ProfilePage() {

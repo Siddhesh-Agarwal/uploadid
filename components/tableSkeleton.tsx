@@ -1,6 +1,6 @@
 import { Skeleton } from "./ui/skeleton";
 
-export function TableSkeleton() {
+export default function TableSkeleton() {
     return (
         <>
             <div className="inline-flex w-full gap-2 mb-3">
