@@ -2,7 +2,7 @@
   "name": "uploadid",
   "version": "0.1.0",
   "private": true,
-  "license": "MPL-2.0-License"
+  "license": "MPL-2.0-License",
   "scripts": {
     "dev": "next dev",
     "turbo": "next dev --turbo",
