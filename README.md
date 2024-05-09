@@ -1,6 +1,18 @@
 # Uploadid
 
-This is a web application that helps colleges and universities keep track of their Faculty participations through an easy to understand Web User Interface.
+Uploadid is a web application that helps colleges and universities keep track of their Faculty participation and achievements through an easy-to-understand Web User Interface.
+
+## Features
+
+- [x] List
+  - [x] Courses
+  - [x] Conferences
+  - [x] Faculty
+  - [x] Grants
+  - [x] Journals
+  - [x] Patents
+- [x] Themes
+- [x] Organisations
 
 
 ## Technologies Used
