@@ -1,13 +1,13 @@
 "use client";
 
+import { SignInButton, SignOutButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link"
 import Image from "next/image"
-import { Button } from "./ui/button"
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle, NavigationMenuIndicator } from "./ui/navigation-menu"
 import { useTheme } from "next-themes"
 import { useEffect } from "react";
-import { FaEye, FaMoon, FaPlus, FaRightFromBracket, FaRightToBracket, FaSun } from "react-icons/fa6";
-import { SignInButton, SignOutButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { FaEye, FaIndianRupeeSign, FaMoon, FaPlus, FaRightFromBracket, FaRightToBracket, FaSun } from "react-icons/fa6";
+import { Button } from "./ui/button"
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./ui/navigation-menu"
 
 function ModeToggle() {
     const { theme, setTheme, systemTheme } = useTheme()
@@ -29,6 +29,7 @@ function ModeToggle() {
 export default function Navbar() {
     return (
         <NavigationMenu className="flex w-full py-2 px-3 md:px-6 lg:px-8 border-b border-gray-200 dark:border-gray-800 justify-between">
+            {/* Navbar start */}
             <NavigationMenuList>
                 <NavigationMenuItem className="bg-inherit">
                     <Link href="/" legacyBehavior passHref prefetch>
@@ -37,34 +38,60 @@ export default function Navbar() {
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
-                <NavigationMenuItem className="bg-inherit">
-                    <Link href="/view" legacyBehavior passHref prefetch>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <FaEye className="mr-1 font-bold" />
-                            View
-                        </NavigationMenuLink>
-                    </Link>
-                </NavigationMenuItem>
+                {/* Show view and add links only when signed in */}
+                <SignedIn>
+                    <NavigationMenuItem className="bg-inherit">
+                        <Link href="/view" legacyBehavior passHref prefetch>
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                <FaEye className="mr-1 font-bold" />
+                                View
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <Link href="/add" legacyBehavior passHref prefetch>
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                <FaPlus className="mr-1 font-bold" />
+                                Add
+                            </NavigationMenuLink>
+                        </Link>
+                    </NavigationMenuItem>
+                </SignedIn>
+
                 <NavigationMenuItem>
-                    <Link href="/add" legacyBehavior passHref prefetch>
+                    <Link href="/pricing" legacyBehavior passHref prefetch>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <FaPlus className="mr-1 font-bold" />
-                            Add
+                            <FaIndianRupeeSign className="mr-1 font-bold" />
+                            Pricing
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
             </NavigationMenuList>
+
+            {/* Navbar end */}
             <NavigationMenuList>
                 <SignedIn>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        <UserButton userProfileMode="modal" />
-                    </NavigationMenuLink>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        <SignOutButton />
-                    </NavigationMenuLink>
+                    <NavigationMenuItem>
+                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                            <UserButton userProfileMode="modal" />
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+                    <NavigationMenuItem>
+                        <SignOutButton>
+                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                <Button variant={"outline"} size="icon">
+                                    <FaRightFromBracket />
+                                </Button>
+                            </NavigationMenuLink>
+                        </SignOutButton>
+                    </NavigationMenuItem>
                 </SignedIn>
                 <SignedOut>
-                    <SignInButton mode="modal" />
+                    <SignInButton mode="modal">
+                        <Button variant={"outline"} size="icon">
+                            <FaRightToBracket />
+                        </Button>
+                    </SignInButton>
                 </SignedOut>
                 <NavigationMenuItem>
                     <ModeToggle />

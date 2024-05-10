@@ -6,5 +6,5 @@ if (!connectionString) {
     throw new Error('DATABASE_URL is not set')
 }
 
-export const client = postgres(connectionString, { prepare: false })
+export const client = postgres(connectionString, { prepare: true })
 export const db = drizzle(client);

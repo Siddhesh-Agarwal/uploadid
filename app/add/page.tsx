@@ -1,5 +1,6 @@
 import { FaBook, FaBookOpen, FaChalkboardUser, FaGraduationCap, FaHandshake, FaMoneyBillTrendUp, FaPlus } from "react-icons/fa6";
 import { ViewLink, ViewLinkCard } from "@/components/ViewLinkCard";
+import SignInToView from "@/components/SignInToView";
 
 const viewLinks: ViewLink[] = [
     {
@@ -43,18 +44,20 @@ const viewLinks: ViewLink[] = [
 export default function ViewPage() {
 
     return (
-        <main className="w-full px-3 py-6">
-            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
-                <FaPlus className="mr-4 inline-flex" size={42} />
-                Add Records
-            </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-6 mt-8">
-                {
-                    viewLinks.map((viewLink: ViewLink, index: number) => (
-                        <ViewLinkCard key={index} viewLink={viewLink} />
-                    ))
-                }
-            </div>
-        </main >
+        <SignInToView>
+            <main className="w-full px-3 py-6">
+                <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
+                    <FaPlus className="mr-4 inline-flex" size={42} />
+                    Add Records
+                </h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-6 mt-8">
+                    {
+                        viewLinks.map((viewLink: ViewLink, index: number) => (
+                            <ViewLinkCard key={index} viewLink={viewLink} />
+                        ))
+                    }
+                </div>
+            </main>
+        </SignInToView>
     )
 }

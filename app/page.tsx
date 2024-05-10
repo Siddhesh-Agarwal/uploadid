@@ -1,4 +1,5 @@
-import { SignUpButton } from "@clerk/nextjs";
+import { SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Home() {
@@ -18,13 +19,25 @@ export default function Home() {
             through an easy to understand Web User Interface.
           </p>
           <div className="mt-6 text-center md:ml-6 flex flex-row justify-center">
-            <SignUpButton mode="modal">
-              <div className="bg-black px-4 py-2 text-white border border-white mx-1">
-                Register
-              </div>
-            </SignUpButton>
-            <Link href={"/view"} className="bg-white px-4 py-2 text-black border border-black mx-1">
-              View Data
+            <SignedOut>
+              <SignUpButton mode="modal">
+                <Button variant={"outline"}>
+                  Register
+                </Button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href={"/add"}>
+                <Button variant={"outline"}>
+                  Add Records
+                </Button>
+              </Link>
+            </SignedIn>
+
+            <Link href={"/pricing"}>
+              <Button className="bg-white px-4 py-2 text-black border border-black mx-1">
+                View Pricing
+              </Button>
             </Link>
           </div>
         </div>
