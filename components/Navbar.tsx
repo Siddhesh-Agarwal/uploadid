@@ -71,20 +71,12 @@ export default function Navbar() {
             {/* Navbar end */}
             <NavigationMenuList>
                 <SignedIn>
-                    <NavigationMenuItem>
-                        <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <UserButton userProfileMode="modal" />
-                        </NavigationMenuLink>
-                    </NavigationMenuItem>
-                    <NavigationMenuItem>
-                        <SignOutButton>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                <Button variant={"outline"} size="icon">
-                                    <FaRightFromBracket />
-                                </Button>
-                            </NavigationMenuLink>
-                        </SignOutButton>
-                    </NavigationMenuItem>
+                    <UserButton userProfileMode="modal" />
+                    <SignOutButton>
+                        <Button variant={"outline"} size="icon">
+                            <FaRightFromBracket />
+                        </Button>
+                    </SignOutButton>
                 </SignedIn>
                 <SignedOut>
                     <SignInButton mode="modal">
