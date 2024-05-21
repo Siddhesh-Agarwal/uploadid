@@ -31,7 +31,7 @@ function PricingCard({ title, price, isPopular }: PricingCardProps) {
                 </div>
             </div>
             <div className="mt-6">
-                <Button className="w-full">Get Started</Button>
+                <Button className="w-full font-bold">Get Started</Button>
             </div>
         </div>
     )
@@ -40,7 +40,7 @@ function PricingCard({ title, price, isPopular }: PricingCardProps) {
 function FeatureCard({ title, description, Icon }: FeatureCardProps) {
     return (
         <div className="relative flex p-4 gap-4 bg-white dark:bg-slate-900 shadow-sm rounded-lg transition-colors hover:bg-blue-100 dark:hover:bg-slate-800 border border-gray-300 dark:border-gray-700">
-            <div className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-100 dark:bg-blue-400">
+            <div className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-100/80 dark:bg-blue-400/20">
                 <Icon className="h-6 w-6 text-primary text-blue-500 dark:text-blue-700" />
             </div>
             <div className="flex flex-col">
