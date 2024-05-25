@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Fira_Sans } from "next/font/google";
 import Provider from "./provider";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar";
 import "./globals.css";
 
 
@@ -25,8 +25,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <Provider>
+          <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
             <Navbar />
             {children}
+          </div>
         </Provider>
       </body>
     </html>

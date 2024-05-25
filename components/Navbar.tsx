@@ -43,25 +43,25 @@ export default function Navbar() {
                     <NavigationMenuItem className="bg-inherit">
                         <Link href="/view" legacyBehavior passHref prefetch>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                <FaEye className="mr-1 font-bold" />
+                                {/* <FaEye className="mr-1 font-bold" /> */}
                                 View
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
-                    <NavigationMenuItem>
+                    <NavigationMenuItem className="bg-inherit">
                         <Link href="/add" legacyBehavior passHref prefetch>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                <FaPlus className="mr-1 font-bold" />
+                                {/* <FaPlus className="mr-1 font-bold" /> */}
                                 Add
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
                 </SignedIn>
 
-                <NavigationMenuItem>
+                <NavigationMenuItem className="bg-inherit">
                     <Link href="/pricing" legacyBehavior passHref prefetch>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            <FaIndianRupeeSign className="mr-1 font-bold" />
+                            {/* <FaIndianRupeeSign className="mr-1 font-bold" /> */}
                             Pricing
                         </NavigationMenuLink>
                     </Link>
@@ -69,7 +69,7 @@ export default function Navbar() {
             </NavigationMenuList>
 
             {/* Navbar end */}
-            <NavigationMenuList>
+            <NavigationMenuList className="space-x-2">
                 <SignedIn>
                     <UserButton userProfileMode="modal" />
                     <SignOutButton>

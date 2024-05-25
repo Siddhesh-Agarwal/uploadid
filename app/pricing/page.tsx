@@ -10,8 +10,8 @@ import {
     FaBolt,
     FaBuildingLock,
     FaGaugeSimpleHigh,
-    FaFileShield,
     FaFileImport,
+    FaGlobe,
 } from "react-icons/fa6";
 
 function PricingCard({ title, price, isPopular }: PricingCardProps) {
@@ -72,33 +72,33 @@ const pricingCardData: PricingCardProps[] = [
 
 const FeatureCardData: FeatureCardProps[] = [
     {
-        title: "Supercharged Collaboration",
-        description: "Enables collaboration with other users within the organization.",
-        Icon: FaBolt,
+        title: "Custom Subdomain",
+        description: "Get a custom subdomain for your organization.",
+        Icon: FaGlobe,
     },
     {
-        title: "Blazing-Fast Speeds",
-        description: "Get up and running in no time with our lightning-fast speeds.",
+        title: "Blazing-Fast Setup",
+        description: "Get started instantly with our lightning-fast setup process.",
         Icon: FaGaugeSimpleHigh,
     },
     {
-        title: "Real-time Record Management",
-        description: "Enables the Management data in real-time.",
-        Icon: FaBookBookmark,
-    },
-    {
-        title: "Data Integrity Measures",
-        description: "Ensures data integrity and security with our state-of-the-art security.",
-        Icon: FaFileShield,
-    },
-    {
         title: "Enterprise-Grade Security",
-        description: "Rest easy with our robust enterprise-grade security measures.",
+        description: "Rest easy with our robust security measures.",
         Icon: FaBuildingLock,
     },
     {
+        title: "Supercharged Collaboration",
+        description: "Team work, collaboration, and document sharing made easy.",
+        Icon: FaBolt,
+    },
+    {
+        title: "Real-time Record Management",
+        description: "Add, edit, and delete records in real-time.",
+        Icon: FaBookBookmark,
+    },
+    {
         title: "Report Generation",
-        description: "Export your data as an easy-to-read PDF for auditing purposes.",
+        description: "Export your data as a single PDF.",
         Icon: FaFileImport,
     }
 ]
@@ -125,8 +125,8 @@ export default function PricingPage() {
             {/* Features */}
             <section className="w-full flex flex-col justify-center mb-16" id="features">
                 <div className="space-y-2 text-center">
-                    <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800">
-                        Product Features
+                    <div className="inline-block rounded-lg bg-gray-200 px-3 py-1 text-sm dark:bg-gray-800">
+                        ✨ Features
                     </div>
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Unlock Your Potential</h2>
                     <p className="max-w-[900px] text-gray-500 text-center dark:text-gray-400 mx-auto">
