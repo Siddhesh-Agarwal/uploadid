@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Fira_Sans } from "next/font/google";
 import Provider from "./provider";
-import Navbar from "@/components/navbar";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 

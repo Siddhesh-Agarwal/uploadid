@@ -1,5 +1,5 @@
-import SignInToView from "@/components/SignInToView";
-import { ViewLink, ViewLinkCard } from "@/components/ViewLinkCard";
+import SignInToView from "@/components/signInToView";
+import { ViewLink, ViewLinkCard } from "@/components/viewLinkCard";
 import { FaBook, FaBookOpen, FaChalkboardUser, FaEye, FaGraduationCap, FaHandshake, FaMoneyBillTrendUp } from "react-icons/fa6";
 
 const viewLinks: ViewLink[] = [
