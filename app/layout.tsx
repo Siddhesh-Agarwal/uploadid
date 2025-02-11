@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Fira_Sans } from "next/font/google";
+import { Noto_Sans } from "next/font/google";
 import Provider from "./provider";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
 
-const font = Fira_Sans({
+const font = Noto_Sans({
     weight: "400",
     subsets: ["cyrillic", "greek"],
 });

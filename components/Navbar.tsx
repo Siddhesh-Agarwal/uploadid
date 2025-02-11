@@ -15,6 +15,7 @@ function ModeToggle() {
         if (systemTheme) {
             setTheme(systemTheme)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [systemTheme])
     return (
         <Button variant="outline" size="icon" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
