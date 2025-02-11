@@ -3,34 +3,34 @@ import { Fira_Sans } from "next/font/google";
 import Provider from "./provider";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 
 const font = Fira_Sans({
-  weight: "400",
-  subsets: ["cyrillic", "greek"],
+    weight: "400",
+    subsets: ["cyrillic", "greek"],
 });
 
 export const metadata: Metadata = {
-  title: "Uploadid",
-  description: "An Application to helps organizations keep track of their employees participations.",
-  icons: "./favicon.ico"
+    title: "Uploadid",
+    description: "An Application to helps organizations keep track of their employees participations.",
+    icons: "./favicon.ico"
 }
 
 export default function RootLayout({
-  children,
+    children,
 }: Readonly<{
-  children: React.ReactNode;
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={font.className}>
-        <Provider>
-          <div className="min-h-screen bg-gray-50 dark:bg-slate-950">
-            <Navbar />
-            {children}
-          </div>
-        </Provider>
-      </body>
-    </html>
-  );
+    return (
+        <html lang="en">
+            <body className={font.className}>
+                <Provider>
+                    <Navbar />
+                    {children}
+                    <Toaster richColors />
+                </Provider>
+            </body>
+        </html>
+    );
 }

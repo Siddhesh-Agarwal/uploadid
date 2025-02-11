@@ -1,4 +1,5 @@
-import { IconType } from "react-icons/lib";
+import { LucideProps } from "lucide-react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export type PricingCardProps = {
     title: string;
@@ -9,5 +10,5 @@ export type PricingCardProps = {
 export type FeatureCardProps = {
     title: string;
     description: string;
-    Icon: IconType;
+    Icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>;
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { SignedIn, SignedOut } from "@clerk/nextjs"
 import NotAllowedPage from "./not-allowed"
 

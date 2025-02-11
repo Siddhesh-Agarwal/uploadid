@@ -1,18 +1,13 @@
-// Pricing Model
-// Monthly - ₹250
-// half yearly - ₹1400
-// Yearly - ₹2500
-
 import { Button } from "@/components/ui/button";
 import { FeatureCardProps, PricingCardProps } from "@/types/cards";
 import {
-    FaBookBookmark,
-    FaBolt,
-    FaBuildingLock,
-    FaGaugeSimpleHigh,
-    FaFileImport,
-    FaGlobe,
-} from "react-icons/fa6";
+    BookMarked,
+    Globe2,
+    Lock,
+    FileDown,
+    Boxes,
+    FastForward,
+} from "lucide-react/icons"
 
 function PricingCard({ title, price, isPopular }: PricingCardProps) {
     return (
@@ -57,16 +52,16 @@ function FeatureCard({ title, description, Icon }: FeatureCardProps) {
 const pricingCardData: PricingCardProps[] = [
     {
         title: "Basic",
-        price: "₹250 / month",
+        price: "₹300 / month",
     },
     {
         title: "Half Yearly",
-        price: "₹1400 / 6 months",
+        price: "₹1600 / 6 months",
         isPopular: true,
     },
     {
         title: "Yearly",
-        price: "₹2500 / year",
+        price: "₹3000 / year",
     },
 ]
 
@@ -74,32 +69,32 @@ const FeatureCardData: FeatureCardProps[] = [
     {
         title: "Custom Subdomain",
         description: "Get a custom subdomain for your organization.",
-        Icon: FaGlobe,
+        Icon: Globe2,
     },
     {
         title: "Blazing-Fast Setup",
         description: "Get started instantly with our lightning-fast setup process.",
-        Icon: FaGaugeSimpleHigh,
+        Icon: FastForward,
     },
     {
         title: "Enterprise-Grade Security",
         description: "Rest easy with our robust security measures.",
-        Icon: FaBuildingLock,
+        Icon: Lock,
     },
     {
         title: "Supercharged Collaboration",
         description: "Team work, collaboration, and document sharing made easy.",
-        Icon: FaBolt,
+        Icon: Boxes,
     },
     {
         title: "Real-time Record Management",
         description: "Add, edit, and delete records in real-time.",
-        Icon: FaBookBookmark,
+        Icon: BookMarked,
     },
     {
         title: "Report Generation",
         description: "Export your data as a single PDF.",
-        Icon: FaFileImport,
+        Icon: FileDown,
     }
 ]
 
