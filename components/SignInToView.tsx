@@ -1,7 +1,7 @@
 "use client";
 
 import { SignedIn, SignedOut } from "@clerk/nextjs"
-import NotAllowedPage from "./not-allowed"
+import NotAllowedPage from "./NotAllowedPage"
 
 export default function SignInToView({ children }: { children: React.ReactNode }) {
     return (

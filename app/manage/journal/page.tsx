@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import SignInToView from "@/components/SignInToView";
-import TableSkeleton from "@/components/tableSkeleton";
+import TableSkeleton from "@/components/TableSkeleton";
 import { Journal } from "@/types/Journal";
 import { Plus } from "lucide-react";
 import { columns } from "./columns";

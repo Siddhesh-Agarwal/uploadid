@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import { DataTable } from "@/components/ui/data-table"
 import SignInToView from "@/components/SignInToView";
-import TableSkeleton from "@/components/tableSkeleton";
+import TableSkeleton from "@/components/TableSkeleton";
 import { Patent } from "@/types/Patent";
 import { columns } from "./columns"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
