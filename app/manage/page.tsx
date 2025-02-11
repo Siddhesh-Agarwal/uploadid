@@ -1,4 +1,4 @@
-import SignInToView from "@/components/signInToView";
+import SignInToView from "@/components/SignInToView";
 import { ViewLink, ViewLinkCard } from "@/components/viewLinkCard";
 import { Handshake, Eye, GraduationCap, HandCoins, NotebookPen, University, ScrollText } from "lucide-react/icons";
 

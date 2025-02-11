@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import { DataTable } from "@/components/ui/data-table";
-import SignInToView from "@/components/signInToView";
+import SignInToView from "@/components/SignInToView";
 import TableSkeleton from "@/components/tableSkeleton";
 import { Faculty } from "@/types/Faculty";
 import { columns } from "./columns";
