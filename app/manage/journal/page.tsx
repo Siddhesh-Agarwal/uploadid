@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import SignInToView from "@/components/SignInToView";
@@ -11,9 +11,21 @@ import { columns } from "./columns";
 import JournalForm from "./form";
 
 
-const journals: Journal[] = []
-
 export default function ViewJournalsPage() {
+    const [journals, setJournals] = useState<Journal[]>([]);
+
+    const fetchJournals = async () => {
+        await fetch("/api/journal")
+            .then(response => response.json())
+            .then(data => setJournals(data))
+            .catch(error => console.error("Error fetching journals:", error))
+    };
+
+    useEffect(() => {
+        fetchJournals();
+    }, []);
+
+
     return (
         <SignInToView>
             <main className="w-full px-3 py-6">

@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { DataTable } from "@/components/ui/data-table";
 import SignInToView from "@/components/SignInToView";
 import TableSkeleton from "@/components/TableSkeleton";
@@ -11,9 +11,20 @@ import ConferenceForm from './form';
 import { Plus } from 'lucide-react';
 
 
-const conferences: Conference[] = [];
-
 export default function ViewConferencesPage() {
+    const [conferences, setConferences] = useState<Conference[]>([])
+    const fetchConferences = async () => {
+        await fetch('/api/conferences')
+            .then(response => response.json())
+            .then(data => setConferences(data))
+            .catch(error => console.error('Error fetching conferences:', error))
+    }
+
+    useEffect(() => {
+        fetchConferences()
+    }, [])
+
+
     return (
         <SignInToView>
             <main className="w-full px-3 py-6">
@@ -39,6 +50,9 @@ export default function ViewConferencesPage() {
                             <SheetTitle>
                                 Add new conference
                             </SheetTitle>
+                            <SheetDescription>
+                                Add information about conference attended by faculties.
+                            </SheetDescription>
                         </SheetHeader>
                         <ConferenceForm />
                     </SheetContent>

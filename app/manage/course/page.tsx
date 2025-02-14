@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import SignInToView from "@/components/SignInToView";
 import TableSkeleton from "@/components/TableSkeleton";
@@ -11,9 +11,21 @@ import { Plus } from "lucide-react/icons";
 import CourseForm from "./form";
 
 
-const courses: Course[] = []
-
 export default function ViewCertificationsPage() {
+    const [courses, setCourses] = useState<Course[]>([]);
+
+    const fetchCourses = async () => {
+        await fetch("/api/courses")
+            .then(response => response.json())
+            .then(data => setCourses(data))
+            .catch(error => console.error("Error fetching courses:", error));
+    };
+
+    useEffect(() => {
+        fetchCourses();
+    }, []);
+
+
     return (
         <SignInToView>
             <main className="w-full px-3 py-6">

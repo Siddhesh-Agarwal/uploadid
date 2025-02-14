@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table"
 import SignInToView from "@/components/SignInToView";
 import TableSkeleton from "@/components/TableSkeleton";
@@ -11,9 +11,21 @@ import { columns } from "./columns"
 import GrantForm from "./form";
 
 
-const grants: Grant[] = []
-
 export default function ViewGrantsPage() {
+    const [grants, setGrants] = useState<Grant[]>([])
+
+    const fetchGrants = async () => {
+        await fetch("/api/grants")
+            .then((response) => response.json())
+            .then((data) => setGrants(data))
+            .catch((error) => console.error("Error fetching grants:", error))
+    }
+
+    useEffect(() => {
+        fetchGrants()
+    }, [])
+
+
     return (
         <SignInToView>
             <main className="w-full px-3 py-6">

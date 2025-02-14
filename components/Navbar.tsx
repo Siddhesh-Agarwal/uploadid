@@ -44,7 +44,9 @@ export default function Navbar() {
                         <Link href="/manage" legacyBehavior passHref prefetch>
                             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                                 <NotebookPen className="mr-1 font-bold" />
-                                Manage
+                                <span className="hidden md:block">
+                                    Manage
+                                </span>
                             </NavigationMenuLink>
                         </Link>
                     </NavigationMenuItem>
@@ -54,7 +56,9 @@ export default function Navbar() {
                     <Link href="/pricing" legacyBehavior passHref prefetch>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                             <Wallet2 className="mr-1 font-bold" />
-                            Pricing
+                            <span className="hidden md:block">
+                                Pricing
+                            </span>
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
@@ -64,11 +68,6 @@ export default function Navbar() {
             <NavigationMenuList className="space-x-2">
                 <SignedIn>
                     <UserButton userProfileMode="modal" />
-                    <SignOutButton>
-                        <Button variant={"outline"} size="icon">
-                            <ArrowRightFromLine />
-                        </Button>
-                    </SignOutButton>
                 </SignedIn>
                 <SignedOut>
                     <SignInButton mode="modal">

@@ -1,19 +1,30 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import SignInToView from "@/components/SignInToView";
 import TableSkeleton from "@/components/TableSkeleton";
 import { Faculty } from "@/types/Faculty";
 import { columns } from "./columns";
-import { Plus, Sheet } from "lucide-react";
-import { SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Plus } from "lucide-react";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import FacultyForm from "./form";
 
 
-const faculties: Faculty[] = []
-
 export default function ViewFacultyPage() {
+    const [faculties, setFaculties] = useState<Faculty[]>([])
+    const fetchFaculties = async () => {
+        await fetch('/api/faculties')
+            .then(response => response.json())
+            .then(data => setFaculties(data))
+            .catch(error => console.error('Error fetching faculties:', error));
+    };
+
+    useEffect(() => {
+        fetchFaculties();
+    }, []);
+
+
     return (
         <SignInToView>
             <main className="w-full px-3 py-6">

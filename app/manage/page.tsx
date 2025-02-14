@@ -1,6 +1,6 @@
 import SignInToView from "@/components/SignInToView";
 import { ViewLink, ViewLinkCard } from "@/components/ViewLinkCard";
-import { Handshake, Eye, GraduationCap, HandCoins, NotebookPen, University, ScrollText } from "lucide-react/icons";
+import { Handshake, GraduationCap, HandCoins, NotebookPen, University, ScrollText } from "lucide-react/icons";
 
 const viewLinks: ViewLink[] = [
     {
@@ -46,8 +46,8 @@ export default function ViewPage() {
         <SignInToView>
             <main className="w-full px-3 py-6">
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mx-2 md:mx-6 lg:mx-10">
-                    <Eye className="mr-4 inline-flex" size={42} />
-                    View Records
+                    <NotebookPen className="mr-4 inline-flex" size={42} />
+                    Manage Records
                 </h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-6 mt-8">
                     {

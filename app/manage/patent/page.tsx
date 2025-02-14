@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table"
 import SignInToView from "@/components/SignInToView";
 import TableSkeleton from "@/components/TableSkeleton";
@@ -11,9 +11,19 @@ import { Plus } from "lucide-react";
 import PatentForm from "./form";
 
 
-const patents: Patent[] = []
-
 export default function ViewPatentsPage() {
+    const [patents, setPatents] = useState<Patent[]>([])
+    const fetchPatents = async () => {
+        await fetch("/api/patent")
+            .then(response => response.json())
+            .then(data => setPatents(data))
+            .catch(error => console.error("Error fetching patents:", error));
+    };
+
+    useEffect(() => {
+        fetchPatents();
+    }, []);
+
     return (
         <SignInToView>
             <main className="w-full px-3 py-6">

@@ -1,6 +1,7 @@
 import { date, integer, pgTable, serial, text, timestamp, varchar } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
+import { facultyTable } from "./Faculty";
 
 export const JournalPublishers: string[] = [
     "ACS Publications",
@@ -44,7 +45,7 @@ export const JournalTypes: string[] = [
 
 export const journalTable = pgTable("journals", {
     id: serial("id").primaryKey(),
-    facultyID: varchar("faculty_id", { length: 10 }).notNull(),
+    facultyID: varchar("faculty_id", { length: 10 }).notNull().references(() => facultyTable.facultyID),
     publisher: text("publisher").notNull(),
     nameOfJournal: text("name_of_journal").notNull(),
     journalType: text("journal_type").array().notNull(),
@@ -57,7 +58,7 @@ export const journalTable = pgTable("journals", {
     createdAt: timestamp("created_at").defaultNow(),
 })
 
-export const JournalSchema = createInsertSchema(journalTable,{
+export const JournalSchema = createInsertSchema(journalTable, {
     journalType: z.array(z.coerce.string()).refine((value) => value.some((item) => item), { message: "Select at least one type" }),
     paperLink: z.coerce.string().url({ message: "Invalid URL" }).startsWith("https://", { message: "Secure URL required." }),
     journalLink: z.coerce.string().url({ message: "Invalid URL" }).startsWith("https://", { message: "Secure URL required." }),
