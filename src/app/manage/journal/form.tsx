@@ -25,25 +25,17 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import {
-  Journal,
-  JournalNames,
-  JournalPublishers,
-  JournalSchema,
-  JournalTypes,
-} from "@/types/Journal";
+import { Journal, JournalSchema } from "@/types/Journal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
+import { journalType } from "@/db/schema";
 
 export default function JournalForm() {
   const form = useForm<Journal>({
     resolver: zodResolver(JournalSchema),
-    defaultValues: {
-      journalType: ["Wos", "Scopus", "UGC care"],
-    },
   });
   async function onSubmit(values: Journal) {
     await fetch("/api/journal", {
@@ -85,27 +77,9 @@ export default function JournalForm() {
             render={({ field }) => (
               <FormItem className="w-1/2 mr-1">
                 <FormLabel>Publisher Name</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select the Publisher" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {JournalPublishers.map(
-                      (publisher: string, index: number) => {
-                        return (
-                          <SelectItem value={publisher} key={index}>
-                            {publisher}
-                          </SelectItem>
-                        );
-                      }
-                    )}
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <Input placeholder="Publisher..." {...field} />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -117,25 +91,7 @@ export default function JournalForm() {
             render={({ field }) => (
               <FormItem className="w-1/2 ml-1">
                 <FormLabel>Journal Name</FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select the Journal" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {JournalNames.map((names: string, index: number) => {
-                      return (
-                        <SelectItem value={names} key={index}>
-                          {names}
-                        </SelectItem>
-                      );
-                    })}
-                  </SelectContent>
-                </Select>
+                <Input placeholder="Journal..." {...field} />
                 <FormMessage />
               </FormItem>
             )}
@@ -145,42 +101,29 @@ export default function JournalForm() {
         <FormField
           control={form.control}
           name="journalType"
-          render={() => (
+          render={({ field }) => (
             <FormItem>
               <div className="mb-4">
                 <FormLabel className="text-base">Journal Type</FormLabel>
               </div>
-              {JournalTypes.map((item) => (
-                <FormField
-                  key={item}
-                  control={form.control}
-                  name="journalType"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item}
-                        className="flex flex-row items-start space-x-3 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(item)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, item])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value: string) => value !== item
-                                    )
-                                  );
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal">{item}</FormLabel>
-                      </FormItem>
-                    );
-                  }}
-                />
-              ))}
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select the Journal" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {journalType.enumValues.map(
+                    (names: string, index: number) => {
+                      return (
+                        <SelectItem value={names} key={index}>
+                          {names}
+                        </SelectItem>
+                      );
+                    }
+                  )}
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
