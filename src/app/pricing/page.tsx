@@ -11,9 +11,9 @@ import {
 
 function FeatureCard({ title, description, Icon }: FeatureCardProps) {
   return (
-    <div className="relative flex p-4 gap-4 bg-white dark:bg-slate-900 shadow-sm rounded-lg transition-colors hover:bg-blue-100 dark:hover:bg-slate-800 border border-gray-300 dark:border-gray-700">
-      <div className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-100/80 dark:bg-blue-400/20">
-        <Icon className="h-6 w-6 text-primary text-blue-500 dark:text-blue-700" />
+    <div className="relative flex p-4 gap-4 bg-card shadow-sm rounded-lg transition-colors hover:bg-accent border border-border">
+      <div className="flex h-12 w-12 items-center justify-center rounded-md bg-accent">
+        <Icon className="h-6 w-6 text-accent-foreground" />
       </div>
       <div className="flex flex-col">
         <h3 className="text-lg font-semibold">{title}</h3>
@@ -102,13 +102,13 @@ export default function PricingPage() {
         id="features"
       >
         <div className="space-y-2 text-center">
-          <div className="inline-block rounded-lg bg-gray-200 px-3 py-1 text-sm dark:bg-gray-800">
+          <div className="inline-block rounded-lg px-3 py-1 text-sm">
             ✨ Features
           </div>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
             Unlock Your Potential
           </h2>
-          <p className="max-w-[900px] text-gray-500 text-center dark:text-gray-400 mx-auto">
+          <p className="max-w-[900px] text-muted-foreground text-center mx-auto">
             Our product offers a suite of powerful features to help you achieve
             your goals. Explore what it can do for you.
           </p>
