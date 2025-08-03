@@ -19,7 +19,7 @@ import { Plus } from "lucide-react";
 export default function ViewConferencesPage() {
   const [conferences, setConferences] = useState<Conference[]>([]);
   const fetchConferences = async () => {
-    await fetch("/api/conferences")
+    await fetch("/api/conference")
       .then((response) => response.json())
       .then((data) => setConferences(data))
       .catch((error) => console.error("Error fetching conferences:", error));

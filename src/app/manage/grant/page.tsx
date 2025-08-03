@@ -20,7 +20,7 @@ export default function ViewGrantsPage() {
   const [grants, setGrants] = useState<Grant[]>([]);
 
   const fetchGrants = async () => {
-    await fetch("/api/grants")
+    await fetch("/api/grant")
       .then((response) => response.json())
       .then((data) => setGrants(data))
       .catch((error) => console.error("Error fetching grants:", error));

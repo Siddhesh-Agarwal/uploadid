@@ -20,7 +20,7 @@ export default function ViewCertificationsPage() {
   const [courses, setCourses] = useState<Course[]>([]);
 
   const fetchCourses = async () => {
-    await fetch("/api/courses")
+    await fetch("/api/course")
       .then((response) => response.json())
       .then((data) => setCourses(data))
       .catch((error) => console.error("Error fetching courses:", error));

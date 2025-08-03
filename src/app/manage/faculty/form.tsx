@@ -52,13 +52,13 @@ export default function FacultyForm() {
   }
 
   useEffect(() => {
-    fetch(`/api/departments?institute?=${instituteID}`)
+    fetch(`/api/department?institute?=${instituteID}`)
       .then((response) => response.json())
       .then((data) => setDepartments(data))
       .catch((error) =>
         toast.error("Error fetching departments", { description: error })
       );
-    fetch(`/api/designations?institute?=${instituteID}`)
+    fetch(`/api/designation?institute?=${instituteID}`)
       .then((response) => response.json())
       .then((data) => setDesignations(data))
       .catch((error) =>

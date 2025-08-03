@@ -19,7 +19,7 @@ import FacultyForm from "./form";
 export default function ViewFacultyPage() {
   const [faculties, setFaculties] = useState<Faculty[]>([]);
   const fetchFaculties = async () => {
-    await fetch("/api/faculties")
+    await fetch("/api/faculty")
       .then((response) => response.json())
       .then((data) => setFaculties(data))
       .catch((error) => console.error("Error fetching faculties:", error));
