@@ -3,6 +3,7 @@
 import { PropsWithChildren } from "react";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
+import { DataStoreProvider } from "@/zustand/provider";
 
 export default function Provider({ children }: PropsWithChildren<any>) {
   return (
@@ -12,7 +13,7 @@ export default function Provider({ children }: PropsWithChildren<any>) {
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+      <DataStoreProvider>{children}</DataStoreProvider>
       <Toaster richColors />
     </ThemeProvider>
   );

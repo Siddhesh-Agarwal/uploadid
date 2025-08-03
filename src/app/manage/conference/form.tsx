@@ -17,22 +17,26 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Conference, ConferenceSchema } from "@/types/Conference";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { type Conference, ConferenceSchema } from "@/types/Conference";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useDataStore } from "@/zustand/provider";
+import z from "zod";
 
 export default function ConferenceForm() {
-  const form = useForm<Conference>({
+  const form = useForm<z.infer<typeof ConferenceSchema>>({
     resolver: zodResolver(ConferenceSchema),
   });
+  const { userID } = useDataStore((state) => state);
+
   async function onSubmit(values: Conference) {
     await fetch("/api/conference", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({ ...values, facultyID: userID }),
     })
       .then((response) => response.json())
       .then(() => {
@@ -47,20 +51,6 @@ export default function ConferenceForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="facultyID"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Faculty ID</FormLabel>
-              <FormControl>
-                <Input placeholder="CSE001" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         <FormField
           control={form.control}
           name="eventName"
@@ -122,7 +112,6 @@ export default function ConferenceForm() {
                       disabled={(date) =>
                         date > new Date() || date < new Date("1900-01-01")
                       }
-                      initialFocus
                     />
                   </PopoverContent>
                 </Popover>

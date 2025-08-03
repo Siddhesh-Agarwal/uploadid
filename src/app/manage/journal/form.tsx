@@ -32,16 +32,19 @@ import { useForm } from "react-hook-form";
 import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
 import { journalType } from "@/db/schema";
+import { useDataStore } from "@/zustand/provider";
 
 export default function JournalForm() {
   const form = useForm<Journal>({
     resolver: zodResolver(JournalSchema),
   });
+  const { userID } = useDataStore((state) => state);
+
   async function onSubmit(values: Journal) {
     await fetch("/api/journal", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({ ...values, facultyID: userID }),
     })
       .then((response) => response.json())
       .then(() => {
@@ -56,20 +59,6 @@ export default function JournalForm() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="facultyID"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Faculty ID</FormLabel>
-              <FormControl>
-                <Input placeholder="CSE123" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-
         <div className="flex flex-row">
           <FormField
             control={form.control}

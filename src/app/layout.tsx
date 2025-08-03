@@ -4,7 +4,10 @@ import Provider from "./provider";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 
-const font = Inter({ weight: "400" });
+const font = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: "Uploadid",

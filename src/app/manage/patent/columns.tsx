@@ -55,11 +55,10 @@ export const columns: ColumnDef<Patent>[] = [
     accessorKey: "journalLink",
     header: "Journal Link",
     cell: ({ cell }) => {
+      const href = cell.getValue();
+      if (!href) return null;
       return (
-        <Link
-          href={cell.getValue() || "https://google.com"}
-          className="flex hover:underline"
-        >
+        <Link href={href} className="flex hover:underline">
           Link
           <Link2 className="ml-1" />
         </Link>

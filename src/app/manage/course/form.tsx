@@ -23,16 +23,19 @@ import { format } from "date-fns";
 import { CalendarDays } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { toast } from "sonner";
+import { useDataStore } from "@/zustand/provider";
 
 export default function CourseForm() {
   const form = useForm<Course>({
     resolver: zodResolver(CourseSchema),
   });
+  const { userID } = useDataStore((state) => state);
+
   async function onSubmit(values: Course) {
     fetch(`/api/course`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({ ...values, facultyID: userID }),
     })
       .then((response) => response.json())
       .then(() => {
@@ -108,24 +111,9 @@ export default function CourseForm() {
                       disabled={(date) =>
                         date > new Date() || date < new Date("1900-01-01")
                       }
-                      initialFocus
                     />
                   </PopoverContent>
                 </Popover>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="facultyID"
-            render={({ field }) => (
-              <FormItem className="w-1/2 ml-1">
-                <FormLabel>Faculty ID</FormLabel>
-                <FormControl>
-                  <Input placeholder="CSE001" {...field} />
-                </FormControl>
                 <FormMessage />
               </FormItem>
             )}

@@ -21,16 +21,19 @@ import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
+import { useDataStore } from "@/zustand/provider";
 
 export default function PatentForm() {
   const form = useForm<Patent>({
     resolver: zodResolver(PatentSchema),
   });
+  const { userID } = useDataStore((state) => state);
+
   async function onSubmit(values: Patent) {
     await fetch("/api/patent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({ ...values, facultyID: userID }),
     })
       .then((response) => response.json())
       .then(() => {
@@ -77,39 +80,23 @@ export default function PatentForm() {
           )}
         />
 
-        <div className="flex flex-row">
-          <FormField
-            control={form.control}
-            name="facultyID"
-            render={({ field }) => (
-              <FormItem className="w-1/2 ml-1">
-                <FormLabel>Faculty ID</FormLabel>
-                <FormControl>
-                  <Input placeholder="CSE001" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="journalLink"
-            render={({ field }) => (
-              <FormItem className="w-1/2 ml-1">
-                <FormLabel>Link</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="https://drive.google.com/"
-                    {...field}
-                    type="url"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
+        <FormField
+          control={form.control}
+          name="journalLink"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Link</FormLabel>
+              <FormControl>
+                <Input
+                  placeholder="https://drive.google.com/"
+                  {...field}
+                  type="url"
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
 
         <FormField
           control={form.control}

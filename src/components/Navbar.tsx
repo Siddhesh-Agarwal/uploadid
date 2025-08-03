@@ -1,22 +1,22 @@
 "use client";
 
 import {
-  AuthButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@/components/supabase/auth";
-import Link from "next/link";
-import Image from "next/image";
-import { useTheme } from "next-themes";
-import { useEffect } from "react";
-import {
   Sun,
   Moon,
   NotebookPen,
   ArrowRightToLine,
   Wallet2,
 } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { useTheme } from "next-themes";
+import { useEffect } from "react";
+import {
+  AuthButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "./supabase/auth";
 import { Button } from "./ui/button";
 import {
   NavigationMenu,

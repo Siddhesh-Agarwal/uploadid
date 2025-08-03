@@ -124,9 +124,10 @@
     --shadow-xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.10), 0px 8px 10px -2px hsl(0 0% 0% / 0.10);
     --shadow-2xl: 0px 4px 8px -1px hsl(0 0% 0% / 0.25);
   }
+
   .theme {
-    --font-sans: Inter, sans-serif;
-    --font-mono: JetBrains Mono, monospace;
+    --font-sans: --var(--font-inter), sans-serif;
+    --font-mono: --var(--font-jetBrainsMono), monospace;
     --font-serif: Merriweather, serif;
     --radius: 0.5rem;
     --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
@@ -135,6 +136,7 @@
     --tracking-wider: calc(var(--tracking-normal) + 0.05em);
     --tracking-widest: calc(var(--tracking-normal) + 0.1em);
   }
+
   body {
     letter-spacing: var(--tracking-normal);
   }
@@ -333,48 +335,58 @@
   --color-shadow-color: var(--shadow-color);
   --color-destructive-foreground: var(--destructive-foreground);
   --animate-aurora: aurora 8s ease-in-out infinite alternate;
+
   @keyframes aurora {
-  0% {
-    backgroundPosition: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+    0% {
+      backgroundPosition: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
     }
-  25% {
-    backgroundPosition: 50% 100%;
-    transform: rotate(5deg) scale(1.1);
+
+    25% {
+      backgroundPosition: 50% 100%;
+      transform: rotate(5deg) scale(1.1);
     }
-  50% {
-    backgroundPosition: 100% 50%;
-    transform: rotate(-3deg) scale(0.95);
+
+    50% {
+      backgroundPosition: 100% 50%;
+      transform: rotate(-3deg) scale(0.95);
     }
-  75% {
-    backgroundPosition: 50% 0%;
-    transform: rotate(3deg) scale(1.05);
+
+    75% {
+      backgroundPosition: 50% 0%;
+      transform: rotate(3deg) scale(1.05);
     }
-  100% {
-    backgroundPosition: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+
+    100% {
+      backgroundPosition: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
     }
   }
+
   @keyframes aurora {
-  0% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+    0% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
     }
-  25% {
-    background-position: 50% 100%;
-    transform: rotate(5deg) scale(1.1);
+
+    25% {
+      background-position: 50% 100%;
+      transform: rotate(5deg) scale(1.1);
     }
-  50% {
-    background-position: 100% 50%;
-    transform: rotate(-3deg) scale(0.95);
+
+    50% {
+      background-position: 100% 50%;
+      transform: rotate(-3deg) scale(0.95);
     }
-  75% {
-    background-position: 50% 0%;
-    transform: rotate(3deg) scale(1.05);
+
+    75% {
+      background-position: 50% 0%;
+      transform: rotate(3deg) scale(1.05);
     }
-  100% {
-    background-position: 0% 50%;
-    transform: rotate(-5deg) scale(0.9);
+
+    100% {
+      background-position: 0% 50%;
+      transform: rotate(-5deg) scale(0.9);
     }
   }
 }
@@ -494,6 +506,7 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }

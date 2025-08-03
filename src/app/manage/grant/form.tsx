@@ -22,17 +22,25 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { Grant, GrantSchema, grantStatus } from "@/types/Grant";
+import { Grant, GrantSchema } from "@/types/Grant";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import { useForm } from "react-hook-form";
 import { CalendarDays } from "lucide-react";
 import { toast } from "sonner";
+import { facultyTable, grantStatus } from "@/db/schema";
+import { useDataStore } from "@/zustand/provider";
+import { useEffect, useState } from "react";
+import { MultiSelect } from "@/components/ui/multiselect";
 
 export default function GrantForm() {
   const form = useForm<Grant>({
     resolver: zodResolver(GrantSchema),
   });
+  const [faculty, setFaculty] = useState<(typeof facultyTable.$inferSelect)[]>(
+    []
+  );
+  const { instituteID } = useDataStore((state) => state);
 
   async function onSubmit(values: Grant) {
     await fetch("/api/grant", {
@@ -50,6 +58,13 @@ export default function GrantForm() {
       });
   }
 
+  useEffect(() => {
+    fetch("/api/faculty")
+      .then((response) => response.json())
+      .then((data) => setFaculty(data))
+      .catch((error) => console.error("Error fetching grants:", error));
+  }, []);
+
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -60,7 +75,19 @@ export default function GrantForm() {
             <FormItem>
               <FormLabel>Proposed by</FormLabel>
               <FormControl>
-                <Input placeholder="Jane Doe" {...field} />
+                {/* <Input placeholder="Jane Doe" {...field} /> */}
+                {/* Use multiselect option */}
+                <MultiSelect
+                  placeholder="Select the faculty"
+                  options={faculty.map((item) => {
+                    return {
+                      label: item.facultyName,
+                      value: item.id,
+                    };
+                  })}
+                  selectedOptions={field.value}
+                  setSelectedOptions={field.onChange}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
