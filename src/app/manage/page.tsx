@@ -1,4 +1,4 @@
-import { ViewLink, ViewLinkCard } from "@/components/ViewLinkCard";
+import { type ViewLink, ViewLinkCard } from "@/components/ViewLinkCard";
 import {
   Handshake,
   GraduationCap,
@@ -13,37 +13,37 @@ const viewLinks: ViewLink[] = [
     title: "Conferences",
     description: "List of conferences attended by Faculty.",
     link: "/manage/conference",
-    icon: <Handshake />,
+    icon: Handshake,
   },
   {
     title: "Courses",
     description: "List of course completed by Faculty.",
     link: "/manage/course",
-    icon: <GraduationCap />,
+    icon: GraduationCap,
   },
   {
     title: "Faculty",
     description: "List of Faculty",
     link: "/manage/faculty",
-    icon: <University />,
+    icon: University,
   },
   {
     title: "Grants",
     description: "List of grants proposed by the Faculty.",
     link: "/manage/grant",
-    icon: <HandCoins />,
+    icon: HandCoins,
   },
   {
     title: "Journals",
     description: "List of Faculty contributions to journals.",
     link: "/manage/journal",
-    icon: <NotebookPen />,
+    icon: NotebookPen,
   },
   {
     title: "Patents",
     description: "List of Patents filed by Faculty.",
     link: "/manage/patent",
-    icon: <ScrollText />,
+    icon: ScrollText,
   },
 ];
 

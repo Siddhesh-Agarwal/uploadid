@@ -1,26 +1,25 @@
+import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 export type ViewLink = {
-    title: string;
-    description: string;
-    icon: JSX.Element;
-    link: string;
-}
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  link: string;
+};
 
 export function ViewLinkCard({ viewLink }: { viewLink: ViewLink }) {
-    return (
-        <Link href={viewLink.link} className="w-full">
-            <div className="border border-border p-6 rounded-lg bg-muted/50 hover:bg-muted hover:cursor-pointer">
-                <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4">
-                    {viewLink.icon}
-                </div>
-                <h2 className="text-xl font-semibold title-font mb-2">
-                    {viewLink.title}
-                </h2>
-                <p className="leading-relaxed text-base">
-                    {viewLink.description}
-                </p>
-            </div>
-        </Link>
-    )
+  return (
+    <Link href={viewLink.link} className="w-full">
+      <div className="border border-border p-6 rounded-lg bg-muted/50 hover:bg-muted hover:cursor-pointer">
+        <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-blue-100 text-blue-500 mb-4">
+          <viewLink.icon className="w-6 h-6" />
+        </div>
+        <h2 className="text-xl font-semibold title-font mb-2">
+          {viewLink.title}
+        </h2>
+        <p className="leading-relaxed text-base">{viewLink.description}</p>
+      </div>
+    </Link>
+  );
 }
