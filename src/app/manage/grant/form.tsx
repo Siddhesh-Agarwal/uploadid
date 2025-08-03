@@ -59,11 +59,11 @@ export default function GrantForm() {
   }
 
   useEffect(() => {
-    fetch("/api/faculty")
+    fetch(`/api/faculty?institute?=${instituteID}`)
       .then((response) => response.json())
       .then((data) => setFaculty(data))
       .catch((error) => console.error("Error fetching grants:", error));
-  }, []);
+  }, [instituteID]);
 
   return (
     <Form {...form}>

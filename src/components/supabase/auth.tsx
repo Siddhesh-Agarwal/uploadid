@@ -1,7 +1,7 @@
 "use client";
 
 import { createClient } from "@/utils/supabase/client";
-import { LogIn, User } from "lucide-react";
+import { User } from "lucide-react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import {
@@ -19,6 +19,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { useEffect, useState } from "react";
+import { useDataStore } from "@/zustand/provider";
+import { toast } from "sonner";
 
 type User = NonNullable<
   Awaited<
@@ -87,9 +89,22 @@ function SignInForm() {
     resolver: zodResolver(signInSchema),
   });
   const router = useRouter();
+  const { setData } = useDataStore((state) => state);
 
   function onSubmit(data: SignInSchema) {
-    console.log(data);
+    fetch("/api/auth/sign-in", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setData({ userID: data.userID, instituteID: data.instituteID });
+        router.push("/");
+      })
+      .catch((error) => {
+        toast.error("Error signing in", { description: error.message });
+      });
   }
   return (
     <Form {...form}>
@@ -144,9 +159,22 @@ function SignUpForm() {
     resolver: zodResolver(signUpSchema),
   });
   const router = useRouter();
+  const { setData } = useDataStore((state) => state);
 
   function onSubmit(data: SignUpSchema) {
-    console.log(data);
+    fetch("/api/auth/sign-up", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setData({ userID: data.userID, instituteID: data.instituteID });
+        router.push("/login");
+      })
+      .catch((error) => {
+        toast.error("Error signing up", { description: error.message });
+      });
   }
 
   return (

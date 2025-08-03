@@ -64,7 +64,7 @@ export default function FacultyForm() {
       .catch((error) =>
         toast.error("Error fetching designations", { description: error })
       );
-  }, []);
+  }, [instituteID]);
 
   return (
     <Form {...form}>
