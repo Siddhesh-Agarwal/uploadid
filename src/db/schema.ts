@@ -21,6 +21,15 @@ export const designationTable = pgTable("designation", {
   description: text("description"),
 });
 
+export const instituteTable = pgTable("institute", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  city: text("city").notNull(),
+  state: text("state").notNull(),
+  country: text("country").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const facultyTable = pgTable("faculties", {
   id: varchar("id", { length: 10 }).primaryKey(),
   facultyName: text("faculty_name").notNull(),
@@ -31,6 +40,9 @@ export const facultyTable = pgTable("faculties", {
     .notNull()
     .references(() => designationTable.name),
   email: text("email").notNull().unique(),
+  instituteID: integer("institute_id")
+    .notNull()
+    .references(() => instituteTable.id),
   createdAt: timestamp("created_at").defaultNow(),
 });
 
