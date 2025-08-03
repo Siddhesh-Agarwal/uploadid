@@ -1,6 +1,11 @@
 "use client";
 
-import { AuthButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import {
+  AuthButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@/components/supabase/auth";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
