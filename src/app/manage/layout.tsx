@@ -1,5 +1,5 @@
 import NotAllowedPage from "@/components/NotAllowedPage";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@/components/supabase/auth";
 
 export default function ProtectedLayout({
   children,

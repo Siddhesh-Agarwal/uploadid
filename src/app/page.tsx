@@ -1,4 +1,4 @@
-import { SignUpButton, SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignedIn, SignedOut, AuthButton } from "@/components/supabase/auth";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
@@ -19,9 +19,9 @@ export default function Home() {
           </p>
           <div className="mt-6 text-center md:ml-6 flex flex-row justify-center gap-2">
             <SignedOut>
-              <SignUpButton mode="modal">
+              <AuthButton>
                 <Button variant={"default"}>Register</Button>
-              </SignUpButton>
+              </AuthButton>
             </SignedOut>
             <SignedIn>
               <Link href={"/manage"}>

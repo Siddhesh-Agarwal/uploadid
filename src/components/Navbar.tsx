@@ -1,6 +1,6 @@
 "use client";
 
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { AuthButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import Image from "next/image";
 import { useTheme } from "next-themes";
@@ -75,14 +75,14 @@ export default function Navbar() {
       {/* Navbar end */}
       <NavigationMenuList className="space-x-2">
         <SignedIn>
-          <UserButton userProfileMode="modal" />
+          <UserButton />
         </SignedIn>
         <SignedOut>
-          <SignInButton mode="modal">
+          <AuthButton>
             <Button variant={"ghost"} size="icon">
               <ArrowRightToLine />
             </Button>
-          </SignInButton>
+          </AuthButton>
         </SignedOut>
         <NavigationMenuItem>
           <ModeToggle />
