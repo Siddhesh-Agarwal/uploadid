@@ -1,9 +1,11 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Grant } from "@/types/Grant";
+import { grantTable } from "@/db/schema";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+
+type Grant = typeof grantTable.$inferSelect;
 
 export const columns: ColumnDef<Grant>[] = [
   {

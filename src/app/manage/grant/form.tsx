@@ -81,8 +81,8 @@ export default function GrantForm() {
                   placeholder="Select the faculty"
                   options={faculty.map((item) => {
                     return {
-                      label: item.facultyName,
-                      value: item.id,
+                      label: item.name,
+                      value: item.id.toString(),
                     };
                   })}
                   selectedOptions={field.value}

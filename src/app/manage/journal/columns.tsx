@@ -1,14 +1,16 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Journal } from "@/types/Journal";
+import { journalTable } from "@/db/schema";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Link2 } from "lucide-react";
 import Link from "next/link";
 
+type Journal = typeof journalTable.$inferSelect;
+
 export const columns: ColumnDef<Journal>[] = [
   {
-    accessorKey: "facultyID",
+    accessorKey: "id",
     header: ({ column }) => {
       return (
         <Button

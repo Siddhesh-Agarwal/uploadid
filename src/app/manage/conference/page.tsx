@@ -3,7 +3,6 @@
 import { Suspense, useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import TableSkeleton from "@/components/TableSkeleton";
-import { Conference } from "@/types/Conference";
 import { columns } from "./columns";
 import {
   Sheet,
@@ -15,12 +14,15 @@ import {
 } from "@/components/ui/sheet";
 import ConferenceForm from "./form";
 import { Plus } from "lucide-react";
+import { conferenceTable } from "@/db/schema";
+
+type Conference = typeof conferenceTable.$inferSelect;
 
 export default function ViewConferencesPage() {
   const [conferences, setConferences] = useState<Conference[]>([]);
   const fetchConferences = async () => {
     await fetch("/api/conference")
-      .then((response) => response.json())
+      .then((response) => response.json() as Promise<Conference[]>)
       .then((data) => setConferences(data))
       .catch((error) => console.error("Error fetching conferences:", error));
   };

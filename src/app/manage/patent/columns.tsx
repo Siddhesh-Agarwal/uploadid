@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Patent } from "@/types/Patent";
+import { patentTable } from "@/db/schema";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Link2 } from "lucide-react";
 import Link from "next/link";
+
+type Patent = typeof patentTable.$inferSelect;
 
 export const columns: ColumnDef<Patent>[] = [
   {

@@ -3,9 +3,6 @@
 import { Suspense, useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import TableSkeleton from "@/components/TableSkeleton";
-import { Faculty } from "@/types/Faculty";
-import { columns } from "./columns";
-import { Plus } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -14,7 +11,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { facultyTable } from "@/db/schema";
+import { columns } from "./columns";
 import FacultyForm from "./form";
+import { Plus } from "lucide-react";
+
+type Faculty = typeof facultyTable.$inferSelect;
 
 export default function ViewFacultyPage() {
   const [faculties, setFaculties] = useState<Faculty[]>([]);

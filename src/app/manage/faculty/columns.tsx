@@ -1,12 +1,14 @@
 import { Button } from "@/components/ui/button";
-import { Faculty } from "@/types/Faculty";
+import { facultyTable } from "@/db/schema";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Link2 } from "lucide-react";
 import Link from "next/link";
 
+type Faculty = typeof facultyTable.$inferSelect;
+
 export const columns: ColumnDef<Faculty>[] = [
   {
-    accessorKey: "facultyID",
+    accessorKey: "id",
     header: ({ column }) => {
       return (
         <Button
@@ -20,7 +22,7 @@ export const columns: ColumnDef<Faculty>[] = [
     },
   },
   {
-    accessorKey: "facultyName",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button

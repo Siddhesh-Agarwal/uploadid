@@ -9,18 +9,6 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 
-export const departmentTable = pgTable("department", {
-  id: serial("id").primaryKey(),
-  name: text("department_name").notNull().unique(),
-  createdAt: timestamp("created_at").defaultNow(),
-});
-
-export const designationTable = pgTable("designation", {
-  id: serial("id").primaryKey(),
-  name: varchar("name", { length: 255 }).notNull().unique(),
-  description: text("description"),
-});
-
 export const instituteTable = pgTable("institute", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -30,42 +18,64 @@ export const instituteTable = pgTable("institute", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const departmentTable = pgTable("department", {
+  id: serial("id").primaryKey(),
+  name: text("department_name").notNull().unique(),
+  instituteID: integer("institute_id")
+    .notNull()
+    .references(() => instituteTable.id),
+});
+
+export const designationTable = pgTable("designation", {
+  id: serial("id").primaryKey(),
+  name: varchar("name", { length: 255 }).notNull(),
+  description: text("description"),
+  instituteID: integer("institute_id")
+    .notNull()
+    .references(() => instituteTable.id),
+});
+
 export const facultyTable = pgTable("faculties", {
-  id: varchar("id", { length: 10 }).primaryKey(),
-  facultyName: text("faculty_name").notNull(),
+  id: serial("id").primaryKey(),
+  name: text("faculty_name").notNull(),
   department: text("department")
     .notNull()
     .references(() => departmentTable.name),
-  designation: text("designation")
+  designation: integer("designation")
     .notNull()
-    .references(() => designationTable.name),
+    .references(() => designationTable.id),
   email: text("email").notNull().unique(),
   instituteID: integer("institute_id")
     .notNull()
     .references(() => instituteTable.id),
-  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const conferenceTable = pgTable("conferences", {
   id: serial("id").primaryKey(),
-  facultyID: varchar("faculty_id", { length: 10 }).notNull(),
+  facultyID: integer("faculty_id")
+    .notNull()
+    .references(() => facultyTable.id),
   eventName: text("event_name").notNull(),
   eventVenue: text("event_venue").notNull(),
   dateOfEvent: date("date_of_event").notNull(),
   link: text("event_link").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
+  instituteID: integer("institute_id")
+    .notNull()
+    .references(() => instituteTable.id),
 });
 
 export const courseTable = pgTable("courses", {
-  courseID: serial("id").primaryKey(),
-  facultyID: varchar("faculty_id", { length: 10 })
+  id: serial("id").primaryKey(),
+  facultyID: integer("faculty_id")
     .notNull()
     .references(() => facultyTable.id),
   courseName: text("course_name").notNull(),
   courseProvider: text("course_provider").notNull(),
   dateOfCompletion: date("date_of_completion").notNull(),
   certificateLink: text("certificate_link").notNull().unique(),
-  createdAt: timestamp("created_at").defaultNow(),
+  instituteID: integer("institute_id")
+    .notNull()
+    .references(() => instituteTable.id),
 });
 
 export const grantStatus = pgEnum("grant_status", [
@@ -76,7 +86,7 @@ export const grantStatus = pgEnum("grant_status", [
 
 export const grantTable = pgTable("grants", {
   id: serial("id").primaryKey(),
-  proposedBy: varchar("faculty_id", { length: 10 })
+  proposedBy: integer("faculty_id")
     .notNull()
     .references(() => facultyTable.id),
   title: text("title").notNull(),
@@ -84,6 +94,9 @@ export const grantTable = pgTable("grants", {
   grantAmount: integer("grant_amount").notNull(),
   status: grantStatus("status").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
+  instituteID: integer("institute_id")
+    .notNull()
+    .references(() => instituteTable.id),
 });
 
 export const journalType = pgEnum("journal_types", [
@@ -94,7 +107,7 @@ export const journalType = pgEnum("journal_types", [
 
 export const journalTable = pgTable("journals", {
   id: serial("id").primaryKey(),
-  facultyID: varchar("faculty_id", { length: 10 })
+  facultyID: integer("faculty_id")
     .notNull()
     .references(() => facultyTable.id),
   publisher: text("publisher").notNull(),
@@ -107,6 +120,9 @@ export const journalTable = pgTable("journals", {
   paperLink: text("paper_link").notNull(),
   journalLink: text("journal_link").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
+  instituteID: integer("institute_id")
+    .notNull()
+    .references(() => instituteTable.id),
 });
 
 export const patentTable = pgTable("patents", {
@@ -114,9 +130,12 @@ export const patentTable = pgTable("patents", {
   publisher: text("publisher").notNull(),
   title: text("title").notNull(),
   dateOfPublication: date("date_of_publication").notNull(),
-  facultyID: varchar("faculty_id", { length: 10 })
+  facultyID: integer("faculty_id")
     .notNull()
     .references(() => facultyTable.id),
   journalLink: text("journal_link").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
+  instituteID: integer("institute_id")
+    .notNull()
+    .references(() => instituteTable.id),
 });

@@ -11,10 +11,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import TableSkeleton from "@/components/TableSkeleton";
-import { Journal } from "@/types/Journal";
+import { journalTable } from "@/db/schema";
 import { Plus } from "lucide-react";
 import { columns } from "./columns";
 import JournalForm from "./form";
+
+type Journal = typeof journalTable.$inferSelect;
 
 export default function ViewJournalsPage() {
   const [journals, setJournals] = useState<Journal[]>([]);

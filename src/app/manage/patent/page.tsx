@@ -1,10 +1,10 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
+import { Plus } from "lucide-react";
 import { DataTable } from "@/components/ui/data-table";
 import TableSkeleton from "@/components/TableSkeleton";
-import { Patent } from "@/types/Patent";
-import { columns } from "./columns";
+import { patentTable } from "@/db/schema";
 import {
   Sheet,
   SheetContent,
@@ -13,8 +13,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Plus } from "lucide-react";
+import { columns } from "./columns";
 import PatentForm from "./form";
+
+type Patent = typeof patentTable.$inferSelect;
 
 export default function ViewPatentsPage() {
   const [patents, setPatents] = useState<Patent[]>([]);

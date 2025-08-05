@@ -3,7 +3,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import TableSkeleton from "@/components/TableSkeleton";
-import { Course } from "@/types/Course";
+import { courseTable } from "@/db/schema";
 import { columns } from "./columns";
 import {
   Sheet,
@@ -16,12 +16,14 @@ import {
 import { Plus } from "lucide-react";
 import CourseForm from "./form";
 
+type Course = typeof courseTable.$inferSelect;
+
 export default function ViewCertificationsPage() {
   const [courses, setCourses] = useState<Course[]>([]);
 
   const fetchCourses = async () => {
     await fetch("/api/course")
-      .then((response) => response.json())
+      .then((response) => response.json() as Promise<Course[]>)
       .then((data) => setCourses(data))
       .catch((error) => console.error("Error fetching courses:", error));
   };

@@ -1,10 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Course } from "@/types/Course";
+import { courseTable } from "@/db/schema";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Link2 } from "lucide-react";
 import Link from "next/link";
+
+type Course = typeof courseTable.$inferSelect;
 
 export const columns: ColumnDef<Course>[] = [
   {

@@ -3,7 +3,6 @@
 import { Suspense, useEffect, useState } from "react";
 import { DataTable } from "@/components/ui/data-table";
 import TableSkeleton from "@/components/TableSkeleton";
-import { Grant } from "@/types/Grant";
 import {
   Sheet,
   SheetContent,
@@ -12,9 +11,12 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { grantTable } from "@/db/schema";
 import { Plus } from "lucide-react";
 import { columns } from "./columns";
 import GrantForm from "./form";
+
+type Grant = typeof grantTable.$inferSelect;
 
 export default function ViewGrantsPage() {
   const [grants, setGrants] = useState<Grant[]>([]);

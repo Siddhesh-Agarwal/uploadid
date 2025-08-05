@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { Conference } from "@/types/Conference";
+import { conferenceTable } from "@/db/schema";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, Link2 } from "lucide-react";
 import Link from "next/link";
+
+type Conference = typeof conferenceTable.$inferSelect;
 
 export const columns: ColumnDef<Conference>[] = [
   {
